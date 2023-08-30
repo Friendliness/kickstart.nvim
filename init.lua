@@ -86,7 +86,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -110,7 +110,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -124,21 +124,22 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
+        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
+          { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
         vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
         vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
       end,
     },
   },
 
-  {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
-  },
+  -- {
+  --   -- Theme inspired by Atom
+  --   'navarasu/onedark.nvim',
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd.colorscheme 'onedark'
+  --   end,
+  -- },
 
   {
     -- Set lualine as statusline
@@ -197,11 +198,32 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
+  -- {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   branch = "v3.x",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+  --     "MunifTanjim/nui.nvim",
+  --   },
+  --   config = function()
+  --     require('neo-tree').setup({
+  --       filesystem = {
+  --         filtered_items = {
+  --           hide_dotfiles = false,
+  --           hide_gitignored = false
+  --         }
+  --       },
+
+  --     })
+  --   end
+  -- },
+
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
+  require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
@@ -210,7 +232,7 @@ require('lazy').setup({
   --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
 }, {})
 
 -- [[ Setting options ]]
@@ -254,6 +276,9 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+-- Relative numbers
+vim.o.relativenumber = true
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
@@ -263,6 +288,31 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Keymap for toggling the tree - NvimTree
+-- vim.keymap.set('n', '<C-n>', ':NvimTreeToggle <CR>', { desc = 'Toggle nvimtree' })
+
+-- Keymap for toggling the tree - Neo-Tree
+vim.keymap.set('n', '<C-n>', ':Neotree <CR>', { desc = 'Toggle neotree' })
+
+-- Switch between windows
+
+vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Window left' })
+vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Window right' })
+vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Window down' })
+vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Window up' })
+
+-- Buffers Tab
+vim.keymap.set('n', '<Tab>', ':BufferNext<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<S-Tab>', ':BufferPrevious<CR>', { desc = 'Previous buffer' })
+vim.keymap.set('n', '<leader>x', ':BufferClose<CR>', { desc = 'Close buffer' })
+
+-- Lazygit
+vim.keymap.set('n', '<leader>gs', ':LazyGit<CR>', { desc = 'LazyGit' })
+
+
+-- Copy all
+
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -410,7 +460,7 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  nmap('<leader>K', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -419,6 +469,7 @@ local on_attach = function(_, bufnr)
   nmap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
+
 
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
@@ -437,9 +488,7 @@ end
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
-  -- tsserver = {},
+  --  tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
@@ -448,7 +497,22 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+  pyright = {
+    python = {
+      analysis = {
+        typeCheckingMode = "off",
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true
+      }
+    }
+  },
+  ruff_lsp = {
+    fixAll = true
+  },
+  rust_analyzer = {},
+
 }
+
 
 -- Setup neovim lua configuration
 require('neodev').setup()
