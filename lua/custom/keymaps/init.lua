@@ -17,7 +17,13 @@ keymap('n', '<leader>x', ':BufferClose<CR>', { desc = 'Close buffer' })
 -- Lazygit
 keymap('n', '<leader>gs', ':LazyGit<CR>', { desc = 'LazyGit' })
 
+-- Undotree
+keymap('n', '<leader>u', ':UndotreeToggle<CR>', { desc = 'Undotree' })
 
 -- Move lines
 keymap("v", "J", ":m '>+1<CR>gv=gv", { desc = 'Move Line Down' })
 keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = 'Move Line Up' })
+
+
+-- Substitute from register
+keymap('n', '<leader>z', '%s/<C-R><C-W>/<C-R>0/g<CR>', { desc = 'Substitue all from register' })
