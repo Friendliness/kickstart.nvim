@@ -19,5 +19,5 @@ keymap('n', '<leader>gs', ':LazyGit<CR>', { desc = 'LazyGit' })
 
 
 -- Move lines
-keymap("v", "J", ":m '>+1<CR>gv=gv")
-keymap("v", "K", ":m '<-2<CR>gv=gv")
+keymap("v", "J", ":m '>+1<CR>gv=gv", { desc = 'Move Line Down' })
+keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = 'Move Line Up' })
