@@ -281,6 +281,7 @@ vim.o.relativenumber = true
 
 -- [[ Basic Keymaps ]]
 
+
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -291,24 +292,6 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 -- Keymap for toggling the tree - NvimTree
 -- vim.keymap.set('n', '<C-n>', ':NvimTreeToggle <CR>', { desc = 'Toggle nvimtree' })
-
--- Keymap for toggling the tree - Neo-Tree
-vim.keymap.set('n', '<C-n>', ':Neotree <CR>', { desc = 'Toggle neotree' })
-
--- Switch between windows
-
-vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Window left' })
-vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Window right' })
-vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Window down' })
-vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Window up' })
-
--- Buffers Tab
-vim.keymap.set('n', '<Tab>', ':BufferNext<CR>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<S-Tab>', ':BufferPrevious<CR>', { desc = 'Previous buffer' })
-vim.keymap.set('n', '<leader>x', ':BufferClose<CR>', { desc = 'Close buffer' })
-
--- Lazygit
-vim.keymap.set('n', '<leader>gs', ':LazyGit<CR>', { desc = 'LazyGit' })
 
 
 -- Copy all
@@ -358,6 +341,11 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+
+-- [[ Custom Keymaps ]]
+require('custom.keymaps.init')
+
+
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
