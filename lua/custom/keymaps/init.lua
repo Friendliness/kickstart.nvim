@@ -9,6 +9,13 @@ keymap('n', '<C-l>', '<C-w>l', { desc = 'Window right' })
 keymap('n', '<C-j>', '<C-w>j', { desc = 'Window down' })
 keymap('n', '<C-k>', '<C-w>k', { desc = 'Window up' })
 
+-- Tmux Navigator Support
+keymap('n', '<C-h>', vim.cmd.TmuxNavigateLeft, { desc = 'Window left' })
+keymap('n', '<C-l>', vim.cmd.TmuxNavigateRight, { desc = 'Window right' })
+keymap('n', '<C-j>', vim.cmd.TmuxNavigateDown, { desc = 'Window down' })
+keymap('n', '<C-k>', vim.cmd.TmuxNavigateUp, { desc = 'Window up' })
+
+
 -- Buffers Tab
 keymap('n', '<Tab>', vim.cmd.BufferNext, { desc = 'Next buffer' })
 keymap('n', '<S-Tab>', vim.cmd.BufferPrevious, { desc = 'Previous buffer' })
