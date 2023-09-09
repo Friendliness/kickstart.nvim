@@ -478,9 +478,9 @@ end
 --  define the property 'filetypes' to the map in question.
 local servers = {
   -- clangd = {},
-  -- gopls = {},
-  --  tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  gopls = {},
+  -- tsserver = {},
+  html = { filetypes = { 'html', 'twig', 'hbs' } },
 
   lua_ls = {
     Lua = {
@@ -488,6 +488,7 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+  docker_compose_language_service = {},
   pyright = {
     python = {
       analysis = {
@@ -500,6 +501,9 @@ local servers = {
   ruff_lsp = {
   },
   rust_analyzer = {},
+  tailwindcss = {},
+  svelte = {},
+
 
 }
 
