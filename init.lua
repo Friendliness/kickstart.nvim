@@ -500,7 +500,8 @@ local servers = {
   },
   ruff_lsp = {
   },
-  rust_analyzer = {},
+  rust_analyzer = {
+  },
   tailwindcss = {},
   svelte = {},
 
