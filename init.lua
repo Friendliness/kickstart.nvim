@@ -479,7 +479,7 @@ end
 local servers = {
   -- clangd = {},
   gopls = {},
-  -- tsserver = {},
+  tsserver = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
 
   lua_ls = {
