@@ -347,6 +347,7 @@ require('custom.keymaps.init')
 
 -- [[ Custom Configs ]]
 require('custom.configs.null-ls')
+require('custom.configs.scroll')
 
 
 

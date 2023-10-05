@@ -2,8 +2,12 @@ local keymap = vim.keymap.set
 -- Keymap for toggling the tree - Neo-Tree
 keymap('n', '<C-n>', vim.cmd.Neotree, { desc = 'Toggle neotree' })
 
--- Switch between windows
+-- Always center
+keymap('n', '<C-d>', '<C-d>zz', { desc = 'Center after moving down half a page' })
+keymap('n', '<C-u>', '<C-u>zz', { desc = 'Center after moving up half a page' })
+keymap('n', 'G', 'Gzz', { desc = 'Center after moving to the bottom of a page' })
 
+-- Switch between windows
 keymap('n', '<C-h>', '<C-w>h', { desc = 'Window left' })
 keymap('n', '<C-l>', '<C-w>l', { desc = 'Window right' })
 keymap('n', '<C-j>', '<C-w>j', { desc = 'Window down' })
