@@ -505,6 +505,7 @@ local servers = {
   },
   tailwindcss = {},
   svelte = {},
+  jsonls = {},
 
 
 }
