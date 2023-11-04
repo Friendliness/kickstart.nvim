@@ -1,6 +1,6 @@
 local keymap = vim.keymap.set
 -- Keymap for toggling the tree - Neo-Tree
-keymap('n', '<C-n>', vim.cmd.Neotree, { desc = 'Toggle neotree' })
+keymap('n', '<C-n>', ":Neotree toggle<CR>", { desc = 'Toggle neotree' })
 
 -- Always center
 keymap('n', '<C-d>', '<C-d>zz', { desc = 'Center after moving down half a page' })
