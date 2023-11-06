@@ -348,7 +348,6 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 require('custom.keymaps.init')
 
 -- [[ Custom Configs ]]
-require('custom.configs.null-ls')
 require('custom.configs.scroll')
 
 
