@@ -503,6 +503,15 @@ local servers = {
   ruff_lsp = {
   },
   rust_analyzer = {
+    ["rust-analyzer"] = {
+      cargo = {
+        features = "all",
+      },
+      checkOnSave = true,
+      check = {
+        command = "clippy"
+      }
+    }
   },
   tailwindcss = {},
   svelte = {},
