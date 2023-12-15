@@ -621,10 +621,11 @@ local servers = {
   pyright = {
     python = {
       analysis = {
-        typeCheckingMode = "off",
+        typeCheckingMode = "standard",
         autoSearchPaths = true,
-        useLibraryCodeForTypes = true
-      }
+        useLibraryCodeForTypes = true,
+      },
+      disableLanguageServices = false
     }
   },
   ruff_lsp = {
