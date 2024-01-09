@@ -1,4 +1,11 @@
 local keymap = vim.keymap.set
+local nmap = function(keys, func, desc)
+	if desc then
+		desc = 'LSP: ' .. desc
+	end
+
+	vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+end
 -- Keymap for toggling the tree - Neo-Tree
 keymap('n', '<C-n>', ":Neotree toggle<CR>", { desc = 'Toggle neotree' })
 
@@ -38,3 +45,14 @@ keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = 'Move Line Up' })
 
 -- Substitute from register
 keymap('n', '<leader>z', '%s/<C-R><C-W>/<C-R>0/g<CR>', { desc = 'Substitue all from register' })
+
+-- Trouble
+keymap("n", "<leader>tx", function() require("trouble").toggle() end, { desc = 'TroubleToggle' })
+keymap("n", "<leader>tq", function() require("trouble").toggle("workspace_diagnostics") end,
+	{ desc = 'TroubleToggle workspace_diagnostics' })
+keymap("n", "<leader>tc", function() require("trouble").toggle("document_diagnostics") end,
+	{ desc = 'TroubleToggle document_diagnostics' })
+keymap("n", "<leader>tf", function() require("trouble").toggle("quickfix") end, { desc = 'TroubleToggle quickfix' })
+keymap("n", "<leader>tl", function() require("trouble").toggle("loclist") end, { desc = 'TroubleToggle loclist' })
+keymap("n", "<leader>gr", function() require("trouble").toggle("lsp_references") end,
+	{ desc = 'TroubleToggle [G]oto lsp_[R]eferences' })
