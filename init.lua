@@ -453,7 +453,7 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 require('custom.keymaps.init')
 
 -- [[ Custom Configs ]]
-require('custom.configs.scroll')
+require('custom.configs.init')
 
 
 
