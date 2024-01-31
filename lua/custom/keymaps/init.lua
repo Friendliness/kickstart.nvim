@@ -56,3 +56,7 @@ keymap("n", "<leader>tf", function() require("trouble").toggle("quickfix") end, 
 keymap("n", "<leader>tl", function() require("trouble").toggle("loclist") end, { desc = 'TroubleToggle loclist' })
 keymap("n", "<leader>gr", function() require("trouble").toggle("lsp_references") end,
 	{ desc = 'TroubleToggle [G]oto lsp_[R]eferences' })
+
+
+-- Go snippets
+keymap("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>", { desc = "Go snippet for error handling" })
