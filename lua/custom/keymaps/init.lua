@@ -1,4 +1,3 @@
-local keymap = vim.keymap.set
 local nmap = function(keys, func, desc)
 	if desc then
 		desc = 'LSP: ' .. desc
@@ -6,53 +5,15 @@ local nmap = function(keys, func, desc)
 
 	vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
 end
--- Keymap for toggling the tree - Neo-Tree
-keymap('n', '<C-n>', ":Neotree toggle<CR>", { desc = 'Toggle neotree' })
-
--- Always center
-keymap('n', '<C-d>', '<C-d>zz', { desc = 'Center after moving down half a page' })
-keymap('n', '<C-u>', '<C-u>zz', { desc = 'Center after moving up half a page' })
-keymap('n', 'G', 'Gzz', { desc = 'Center after moving to the bottom of a page' })
-
--- Switch between windows
-keymap('n', '<C-h>', '<C-w>h', { desc = 'Window left' })
-keymap('n', '<C-l>', '<C-w>l', { desc = 'Window right' })
-keymap('n', '<C-j>', '<C-w>j', { desc = 'Window down' })
-keymap('n', '<C-k>', '<C-w>k', { desc = 'Window up' })
-
--- Tmux Navigator Support
-keymap('n', '<C-h>', vim.cmd.TmuxNavigateLeft, { desc = 'Window left' })
-keymap('n', '<C-l>', vim.cmd.TmuxNavigateRight, { desc = 'Window right' })
-keymap('n', '<C-j>', vim.cmd.TmuxNavigateDown, { desc = 'Window down' })
-keymap('n', '<C-k>', vim.cmd.TmuxNavigateUp, { desc = 'Window up' })
 
 
--- Buffers Tab
-keymap('n', '<Tab>', vim.cmd.BufferNext, { desc = 'Next buffer' })
-keymap('n', '<S-Tab>', vim.cmd.BufferPrevious, { desc = 'Previous buffer' })
-keymap('n', '<leader>x', vim.cmd.BufferClose, { desc = 'Close buffer' })
-
--- Lazygit
-keymap('n', '<leader>gs', vim.cmd.LazyGit, { desc = 'LazyGit' })
-
--- Undotree
-keymap('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Undotree' })
-
--- Move lines
-keymap("v", "J", ":m '>+1<CR>gv=gv", { desc = 'Move Line Down' })
-keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = 'Move Line Up' })
-
-
--- Substitute from register
-keymap('n', '<leader>z', '%s/<C-R><C-W>/<C-R>0/g<CR>', { desc = 'Substitue all from register' })
-
--- Trouble
-keymap("n", "<leader>tx", function() require("trouble").toggle() end, { desc = 'TroubleToggle' })
-keymap("n", "<leader>tq", function() require("trouble").toggle("workspace_diagnostics") end,
-	{ desc = 'TroubleToggle workspace_diagnostics' })
-keymap("n", "<leader>tc", function() require("trouble").toggle("document_diagnostics") end,
-	{ desc = 'TroubleToggle document_diagnostics' })
-keymap("n", "<leader>tf", function() require("trouble").toggle("quickfix") end, { desc = 'TroubleToggle quickfix' })
-keymap("n", "<leader>tl", function() require("trouble").toggle("loclist") end, { desc = 'TroubleToggle loclist' })
-keymap("n", "<leader>gr", function() require("trouble").toggle("lsp_references") end,
-	{ desc = 'TroubleToggle [G]oto lsp_[R]eferences' })
+require("custom.keymaps.buffers")
+require("custom.keymaps.centering")
+require("custom.keymaps.neotree")
+require("custom.keymaps.tmux")
+require("custom.keymaps.undotree")
+require("custom.keymaps.trouble")
+require("custom.keymaps.moving")
+require("custom.keymaps.substitution")
+require("custom.keymaps.lazygit")
+require("custom.keymaps.gosnippet")
