@@ -23,6 +23,23 @@ local function toggle_telescope(harpoon_files)
 	}):find()
 end
 
+-- Extension for Telescope split tabs
+harpoon:extend({
+	UI_CREATE = function(cx)
+		vim.keymap.set("n", "<C-v>", function()
+			harpoon.ui:select_menu_item({ vsplit = true })
+		end, { buffer = cx.bufnr })
+
+		vim.keymap.set("n", "<C-x>", function()
+			harpoon.ui:select_menu_item({ split = true })
+		end, { buffer = cx.bufnr })
+
+		vim.keymap.set("n", "<C-t>", function()
+			harpoon.ui:select_menu_item({ tabedit = true })
+		end, { buffer = cx.bufnr })
+	end,
+})
+
 vim.keymap.set("n", "<leader>Hl", function() harpoon:list():append() end, { desc = "Harpoon [L]ist append" })
 vim.keymap.set("n", "<leader>He", function() toggle_telescope(harpoon:list()) end,
 	{ desc = "[H]arpoon toggle quick m[e]nu" })
