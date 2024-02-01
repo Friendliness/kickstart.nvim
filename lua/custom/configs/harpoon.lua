@@ -46,10 +46,10 @@ vim.keymap.set("n", "<leader>He", function() toggle_telescope(harpoon:list()) en
 	{ desc = "[H]arpoon toggle quick m[e]nu" })
 
 
-vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end, { desc = "[H]arpoon 1" })
-vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end, { desc = "[H]arpoon 2" })
-vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end, { desc = "[H]arpoon 3" })
-vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end, { desc = "[H]arpoon 4" })
+vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end, { desc = "Harpoon [1]" })
+vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end, { desc = "Harpoon [2]" })
+vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end, { desc = "Harpoon [3]" })
+vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end, { desc = "Harpoon [4]" })
 
 -- Toggle previous & next buffers stored within Harpoon list
 vim.keymap.set("n", "<leader>Hp", function() harpoon:list():prev() end, { desc = "[H]arpoon [p]revious" })
