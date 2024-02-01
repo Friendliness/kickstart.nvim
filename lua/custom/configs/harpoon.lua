@@ -40,7 +40,8 @@ harpoon:extend({
 	end,
 })
 
-vim.keymap.set("n", "<leader>Hl", function() harpoon:list():append() end, { desc = "Harpoon [L]ist append" })
+vim.keymap.set("n", "<leader>Hl", function() harpoon:list():append() end, { desc = "[H]arpoon [l]ist append" })
+vim.keymap.set("n", "<leader>Hr", function() harpoon:list():remove() end, { desc = "[H]arpoon [r]emove from list" })
 vim.keymap.set("n", "<leader>He", function() toggle_telescope(harpoon:list()) end,
 	{ desc = "[H]arpoon toggle quick m[e]nu" })
 
