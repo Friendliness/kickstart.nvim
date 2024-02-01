@@ -12,11 +12,9 @@ ls.config.set_config({
 	store_selection_keys = '<C-s>',
 })
 
-
 local tir = function()
 	return { "interaction.client.try_interaction_respond()" }
 end
-
 ls.add_snippets(nil, {
 	all = {
 		snip({
@@ -42,7 +40,6 @@ ls.add_snippets(nil, {
 				text(')'),
 				insert(0)
 			}
-		),
-		snip({})
+		)
 	}
 })
