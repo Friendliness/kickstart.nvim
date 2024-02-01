@@ -9,7 +9,7 @@ local choice = ls.choice_node
 local dynamicn = ls.dynamic_node
 
 ls.config.set_config({
-	store_selection_keys = '<C-s>',
+	store_selection_keys = '<leader>ss',
 })
 
 local tir = function()
