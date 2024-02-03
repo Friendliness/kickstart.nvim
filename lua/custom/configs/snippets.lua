@@ -12,9 +12,15 @@ ls.config.set_config({
 	store_selection_keys = '<leader>ss',
 })
 
+-- Temporary snippets
 local tir = function()
 	return { "interaction.client.try_interaction_respond()" }
 end
+
+local botlogerror = function()
+	return { "self.bot._logging.error()" }
+end
+
 ls.add_snippets(nil, {
 	all = {
 		snip({
@@ -25,6 +31,13 @@ ls.add_snippets(nil, {
 			func(tir, {})
 		}),
 
+		snip({
+			trig = "sble",
+			namr = "self.bot_logging.error",
+			dscr = "Bot logging error"
+		}, {
+			func(tir, {})
+		}),
 		snip({
 				trig = "link",
 				name = "markdown_link",
