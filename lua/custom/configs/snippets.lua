@@ -36,7 +36,7 @@ ls.add_snippets(nil, {
 			namr = "self.bot_logging.error",
 			dscr = "Bot logging error"
 		}, {
-			func(tir, {})
+			func(botlogerror, {})
 		}),
 		snip({
 				trig = "link",
