@@ -21,6 +21,26 @@ local botlogerror = function()
 	return { "self.bot._logging.error()" }
 end
 
+-- Block extends base.html
+local bebh = function()
+	return { '{% extends "base.html" %"}' }
+end
+
+-- Endblock
+local endbl = function()
+	return { '{% endblock %}' }
+end
+
+-- With end block
+local bebhe = function()
+	return { '{% extends "base.html" %"}<CR>{% endblock %}' }
+end
+
+local jinja = function()
+	return { '{% %}' }
+end
+
+
 ls.add_snippets(nil, {
 	all = {
 		snip({
@@ -39,6 +59,27 @@ ls.add_snippets(nil, {
 			func(botlogerror, {})
 		}),
 		snip({
+			trig = "bebh",
+			namr = "block_extends_base_html",
+			dscr = "Jinja2 Block Extends Base HTML"
+		}, {
+			func(bebh, {})
+		}),
+		snip({
+			trig = "bebhe",
+			namr = "block_extends_base_html_and_endblock",
+			dscr = "Jinja2 Block Extends Base HTML with Endblock"
+		}, {
+			func(bebhe, {})
+		}),
+		snip({
+			trig = "endbl",
+			namr = "jinja_2_endblock",
+			dscr = "Jinja2 endblock"
+		}, {
+			func(endbl, {})
+		}),
+		snip({
 				trig = "link",
 				name = "markdown_link",
 				dscr = "Create markdown link [txt](url)"
@@ -52,6 +93,20 @@ ls.add_snippets(nil, {
 				end, {}),
 				text(')'),
 				insert(0)
+			}
+		),
+
+		snip({
+				trig = "jj2",
+				name = "jinja2_block",
+				dscr = "Create jinja2 block"
+			},
+			{
+				text('{% block '),
+				func(function(_, snip)
+					return snip.env.TM_SELECTED_TEXT[1] or {}
+				end, {}),
+				text(' %}'),
 			}
 		)
 	}
