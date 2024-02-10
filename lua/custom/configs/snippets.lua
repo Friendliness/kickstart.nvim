@@ -1,4 +1,7 @@
 local ls = require("luasnip")
+ls.filetype_extend("html", { "djangohtml" })
+
+
 -- some shorthands...
 local snip = ls.snippet
 local node = ls.snippet_node
