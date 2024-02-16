@@ -60,3 +60,7 @@ keymap("n", "<leader>gr", function() require("trouble").toggle("lsp_references")
 
 -- Go snippets
 -- keymap("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>", { desc = "Go snippet for error handling" })
+
+
+-- Neogen -
+keymap("n", "<leader>nf", ":lua require('neogen').generate()<CR>", { desc = "Neogen generate" })
