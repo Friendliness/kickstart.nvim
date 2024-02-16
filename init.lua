@@ -642,13 +642,19 @@ local servers = {
   },
   docker_compose_language_service = {},
   pyright = {
-    python = {
-      analysis = {
-        typeCheckingMode = "standard",
-        autoSearchPaths = true,
-        useLibraryCodeForTypes = true,
+    settings = {
+      pyright = {
+        disableOrganizeImports = true,
       },
-      disableLanguageServices = false
+      python = {
+        analysis = {
+          ignore = { '*' },
+          typeCheckingMode = "standard",
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
+        },
+        disableLanguageServices = false
+      },
     }
   },
   ruff_lsp = {
