@@ -64,3 +64,15 @@ keymap("n", "<leader>gr", function() require("trouble").toggle("lsp_references")
 
 -- Neogen -
 keymap("n", "<leader>nf", ":lua require('neogen').generate()<CR>", { desc = "Neogen generate" })
+
+
+-- Yank keymap changes
+-- keymap("n", "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
+-- keymap({ "v", "x" }, '<leader>y', '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
+-- keymap({ "n", "v", "x" }, '<leader>yy', '"+yy', { noremap = true, silent = true, desc = 'Yank line to clipboard' })
+-- keymap({ "n", "v", "x" }, '<leader>Y', '"+yy', { noremap = true, silent = true, desc = 'Yank line to clipboard' })
+keymap({ "n", "v", "x" }, '<C-a>', 'gg0vG$', { noremap = true, silent = true, desc = 'Select all' })
+-- keymap({ 'n', 'v', 'x' }, '<leader>p', '"+p', { noremap = true, silent = true, desc = 'Paste from clipboard' })
+-- keymap('i', '<C-p>', '<C-r>+', { noremap = true, silent = true, desc = 'Paste from clipboard from within insert mode' })
+-- keymap("x", "<leader>P", '"_dP',
+-- 	{ noremap = true, silent = true, desc = 'Paste over selection without erasing unnamed register' })
