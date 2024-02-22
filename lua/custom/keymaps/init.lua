@@ -76,3 +76,10 @@ keymap({ "n", "v", "x" }, '<C-a>', 'gg0vG$', { noremap = true, silent = true, de
 -- keymap('i', '<C-p>', '<C-r>+', { noremap = true, silent = true, desc = 'Paste from clipboard from within insert mode' })
 -- keymap("x", "<leader>P", '"_dP',
 -- 	{ noremap = true, silent = true, desc = 'Paste over selection without erasing unnamed register' })
+
+
+-- Telescope
+keymap('n', '<leader>si', function()
+		require('telescope.builtin').find_files({ hidden = true })
+	end,
+	{ desc = '[S]earch h[i]dden files' })
