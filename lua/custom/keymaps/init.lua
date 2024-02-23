@@ -83,3 +83,9 @@ keymap('n', '<leader>si', function()
 		require('telescope.builtin').find_files({ hidden = true })
 	end,
 	{ desc = '[S]earch h[i]dden files' })
+
+
+-- Terminal
+keymap('n', '<leader>ot', ':split term://zsh<CR>:resize 10<CR>', { desc = "[O]pen [T]erminal" })
+-- Remap escape in the terminal to exit terminal mode
+keymap('t', '<Esc>', "<C-\\><C-n><CR>", { desc = "Escape terminal remap" })
