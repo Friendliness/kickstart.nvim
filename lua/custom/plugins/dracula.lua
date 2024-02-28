@@ -7,5 +7,6 @@ return {
       transparent_bg = true,
     }
     vim.cmd.colorscheme 'dracula'
+    vim.cmd.hi 'Comment gui=none'
   end,
 }
