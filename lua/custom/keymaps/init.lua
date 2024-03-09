@@ -65,6 +65,7 @@ keymap('n', '<leader>gr', function()
 end, { desc = 'TroubleToggle [G]oto lsp_[R]eferences' })
 
 -- Go snippets
+-- In the future I'll create an actual snippet for this
 keymap('n', '<leader>ee', 'oif err != nil {<CR>}<Esc>Oreturn err<Esc>', { desc = 'Go snippet for error handling' })
 
 -- Neogen -
