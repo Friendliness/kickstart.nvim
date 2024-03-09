@@ -64,11 +64,8 @@ keymap('n', '<leader>gr', function()
   require('trouble').toggle 'lsp_references'
 end, { desc = 'TroubleToggle [G]oto lsp_[R]eferences' })
 
--- Gitsigns
--- keymap('n', '<leader>tb', ':Gitsigns toggle_current_line_blame<CR>', { desc = '[t]oggle git line [b]lame' })
-
 -- Go snippets
--- keymap("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>", { desc = "Go snippet for error handling" })
+keymap('n', '<leader>ee', 'oif err != nil {<CR>}<Esc>Oreturn err<Esc>', { desc = 'Go snippet for error handling' })
 
 -- Neogen -
 keymap('n', '<leader>nf', ":lua require('neogen').generate()<CR>", { desc = 'Neogen generate' })
