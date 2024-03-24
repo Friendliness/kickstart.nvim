@@ -66,7 +66,7 @@ end, { desc = 'TroubleToggle [G]oto lsp_[R]eferences' })
 
 -- Go snippets
 -- In the future I'll create an actual snippet for this
-keymap('n', '<leader>ee', 'oif err != nil {<CR>}<Esc>Oreturn err<Esc>', { desc = 'Go snippet for error handling' })
+-- keymap('n', '<leader>ee', 'oif err != nil {<CR>}<Esc>Oreturn err<Esc>', { desc = 'Go snippet for error handling' })
 
 -- Neogen -
 keymap('n', '<leader>nf', ":lua require('neogen').generate()<CR>", { desc = 'Neogen generate' })
@@ -76,16 +76,16 @@ keymap('n', '<leader>nf', ":lua require('neogen').generate()<CR>", { desc = 'Neo
 -- keymap({ "v", "x" }, '<leader>y', '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
 -- keymap({ "n", "v", "x" }, '<leader>yy', '"+yy', { noremap = true, silent = true, desc = 'Yank line to clipboard' })
 -- keymap({ "n", "v", "x" }, '<leader>Y', '"+yy', { noremap = true, silent = true, desc = 'Yank line to clipboard' })
-keymap({ 'n', 'v', 'x' }, '<C-a>', 'gg0vG$', { noremap = true, silent = true, desc = 'Select all' })
+-- keymap({ 'n', 'v', 'x' }, '<C-a>', 'gg0vG$', { noremap = true, silent = true, desc = 'Select all' })
 -- keymap({ 'n', 'v', 'x' }, '<leader>p', '"+p', { noremap = true, silent = true, desc = 'Paste from clipboard' })
 -- keymap('i', '<C-p>', '<C-r>+', { noremap = true, silent = true, desc = 'Paste from clipboard from within insert mode' })
--- keymap("x", "<leader>P", '"_dP',
--- 	{ noremap = true, silent = true, desc = 'Paste over selection without erasing unnamed register' })
+keymap('x', '<leader>P', '"_dP', { noremap = true, silent = true, desc = 'Paste over selection without erasing unnamed register' })
 
 -- Telescope
 keymap('n', '<leader>si', function()
   require('telescope.builtin').find_files { hidden = true }
 end, { desc = '[S]earch h[i]dden files' })
+keymap('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[S]earch [B]uffers' })
 
 -- Terminal
 keymap('n', '<leader>ot', ':split term://zsh<CR>:resize 10<CR>', { desc = '[O]pen [T]erminal' })
