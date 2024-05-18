@@ -23,6 +23,10 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+    'mfussenegger/nvim-dap-python',
+    config = function()
+      require('dap-python').setup '~/.virtualenvs/debugpy/bin/python'
+    end,
   },
   config = function()
     local dap = require 'dap'
@@ -35,7 +39,11 @@ return {
 
       -- You can provide additional configuration to the handlers,
       -- see mason-nvim-dap README for more information
-      handlers = {},
+      handlers = {
+        function()
+          require('dap-python').setup '~/.virtualenvs/debugpy/bin/python'
+        end,
+      },
 
       -- You'll need to check that you have the required things installed
       -- online, please don't ask me how to install them :)
@@ -50,7 +58,12 @@ return {
     vim.keymap.set('n', '<F1>', dap.step_into, { desc = 'Debug: Step Into' })
     vim.keymap.set('n', '<F2>', dap.step_over, { desc = 'Debug: Step Over' })
     vim.keymap.set('n', '<F3>', dap.step_out, { desc = 'Debug: Step Out' })
+    vim.keymap.set('n', '<F4>', dap.step_back, { desc = 'Debug: Step Back' })
     vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
+    vim.keymap.set('n', '<F6>', dap.run_to_cursor, { desc = 'Debug: Run to cursor' })
+    vim.keymap.set('n', '<space>?', function()
+      require('dapui').eval(nil, { enter = true })
+    end, { desc = 'Debug: Eval under cursor' })
     vim.keymap.set('n', '<leader>B', function()
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = 'Debug: Set Breakpoint' })
