@@ -638,7 +638,6 @@ require('lazy').setup({
             },
           },
         },
-        ruff_lsp = {},
         ruff = {},
         rust_analyzer = {
           ['rust-analyzer'] = {
@@ -704,7 +703,7 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         -- Conform can also run multiple formatters sequentially
-        python = { 'ruff_lsp', 'ruff_format', 'ruff' },
+        python = { 'ruff_format', 'ruff' },
 
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
