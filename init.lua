@@ -625,12 +625,9 @@ require('lazy').setup({
         docker_compose_language_service = {},
         pyright = {
           settings = {
-            pyright = {
-              disableOrganizeImports = true,
-            },
+            disableOrganizeImports = true,
             python = {
               analysis = {
-                ignore = { '*' },
                 typeCheckingMode = 'standard',
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
