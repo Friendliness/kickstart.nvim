@@ -33,6 +33,10 @@ keymap('n', '<leader>x', vim.cmd.BufferClose, { desc = 'Close buffer' })
 
 -- Lazygit
 keymap('n', '<leader>gs', vim.cmd.LazyGit, { desc = 'LazyGit' })
+keymap('n', '<leader>lg', vim.cmd.LazyGit, { desc = 'LazyGit' })
+
+-- LazySql
+keymap('n', '<leader>ls', vim.cmd.LazySql, { desc = 'LazySql' })
 
 -- Undotree
 keymap('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Undotree' })
