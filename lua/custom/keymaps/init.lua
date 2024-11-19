@@ -101,3 +101,24 @@ keymap('t', '<Esc>', '<C-\\><C-n><CR>', { desc = 'Escape terminal remap' })
 
 -- Code Screenshots with Silicon
 keymap('x', '<leader>cc', ":'<,'>Silicon<CR>", { desc = '[C]apture [C]ode with Silicon' })
+
+-- Persistence keybinds
+-- load the session for current directory
+keymap('n', '<leader>Ss', function()
+  require('persistence').load()
+end)
+
+-- select a session to load
+keymap('n', '<leader>SS', function()
+  require('persistence').select()
+end)
+
+-- load the last session
+keymap('n', '<leader>Sl', function()
+  require('persistence').load { last = true }
+end)
+
+-- stop persistence - session won't be saved on exit
+keymap('n', '<leader>Sd', function()
+  require('persistence').stop()
+end)
