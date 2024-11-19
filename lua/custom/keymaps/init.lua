@@ -106,19 +106,19 @@ keymap('x', '<leader>cc', ":'<,'>Silicon<CR>", { desc = '[C]apture [C]ode with S
 -- load the session for current directory
 keymap('n', '<leader>Ss', function()
   require('persistence').load()
-end)
+end, { desc = '[S]ession [s]elect current directory' })
 
 -- select a session to load
 keymap('n', '<leader>SS', function()
   require('persistence').select()
-end)
+end, { desc = '[S]ession [S]elect' })
 
 -- load the last session
 keymap('n', '<leader>Sl', function()
   require('persistence').load { last = true }
-end)
+end, { desc = '[S]ession [l]ast' })
 
 -- stop persistence - session won't be saved on exit
 keymap('n', '<leader>Sd', function()
   require('persistence').stop()
-end)
+end, { desc = '[S]ession stop' })
