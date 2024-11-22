@@ -98,6 +98,19 @@ return {
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
+    dap.configurations.htmldjango = vim.deepcopy(dap.configurations.python or {})
+    table.insert(dap.configurations.htmldjango, {
+      type = 'python',
+      request = 'launch',
+      name = 'Django Template Debugger',
+      program = '${workspaceFolder}/manage.py',
+      args = { 'runserver', '--noreload' },
+      django = true,
+      jinja = true,
+      justMyCode = false,
+      console = 'integratedTerminal',
+    })
+
     -- Install golang specific config
     require('dap-go').setup()
   end,
