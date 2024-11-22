@@ -61,7 +61,7 @@ return {
     vim.keymap.set('n', '<F4>', dap.step_back, { desc = 'Debug: Step Back' })
     vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
     vim.keymap.set('n', '<F6>', dap.run_to_cursor, { desc = 'Debug: Run to cursor' })
-    vim.keymap.set('n', '<S-F5>', dap.close, { desc = 'Debug: Stop debugging' })
+    vim.keymap.set('n', '<F9>', dap.close, { desc = 'Debug: Stop debugging' })
     vim.keymap.set('n', '<space>?', function()
       require('dapui').eval(nil, { enter = true })
     end, { desc = 'Debug: Eval under cursor' })
