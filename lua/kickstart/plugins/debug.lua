@@ -111,6 +111,16 @@ return {
       console = 'integratedTerminal',
     })
 
+    table.insert(dap.configurations.htmldjango, {
+      name = 'Python: Jinja',
+      type = 'debugpy',
+      request = 'attach',
+      justMyCode = false,
+      jinja = true,
+    })
+
+    dap.configurations.html = vim.deepcopy(dap.configurations.htmldjango or {})
+
     -- Install golang specific config
     require('dap-go').setup()
   end,
