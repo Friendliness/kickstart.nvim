@@ -122,3 +122,6 @@ end, { desc = '[S]ession [l]ast' })
 keymap('n', '<leader>Sd', function()
   require('persistence').stop()
 end, { desc = '[S]ession stop' })
+
+-- LSP: Signature Help
+keymap('n', '<M-a-k>', vim.lsp.buf.signature_help, { desc = 'LSP: Signature Help' })
