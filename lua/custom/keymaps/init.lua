@@ -125,3 +125,8 @@ end, { desc = '[S]ession stop' })
 
 -- LSP: Signature Help
 keymap('n', '<M-a-k>', vim.lsp.buf.signature_help, { desc = 'LSP: Signature Help' })
+
+-- Source keymaps
+keymap('n', '<leader><leader>X', '<cmd>source %<CR>', { desc = 'Source Current File' })
+keymap('n', '<leader>X', ':.lua<CR>', { desc = 'Lua Run Current Line' })
+keymap('v', '<leader>X', ':lua<CR>', { desc = 'Lua Run Selection' })
