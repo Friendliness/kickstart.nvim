@@ -52,6 +52,4 @@ M.setup = function()
   live_multigrep()
 end
 
-live_multigrep()
-
 return M

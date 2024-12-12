@@ -93,7 +93,7 @@ keymap('n', '<leader>si', function()
   require('telescope.builtin').find_files { hidden = true }
 end, { desc = '[S]earch h[i]dden files' })
 keymap('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[S]earch [B]uffers' })
-keymap('n', '<leader>sm', require 'custom.configs.telescope.multigrep', { desc = '[S]earch [M]ultigrep' })
+keymap('n', '<leader>sm', require('custom.configs.telescope.multigrep').setup, { desc = '[S]earch [M]ultigrep' })
 
 -- Terminal
 keymap('n', '<leader>ot', ':split term://zsh<CR>:resize 10<CR>', { desc = '[O]pen [T]erminal' })
