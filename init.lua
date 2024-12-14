@@ -651,6 +651,16 @@ require('lazy').setup({
         tailwindcss = {},
         svelte = {},
         jsonls = {},
+        -- nix
+        nil_ls = {
+          settings = {
+            ['nil'] = {
+              formatting = {
+                command = { 'nixfmt' },
+              },
+            },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed

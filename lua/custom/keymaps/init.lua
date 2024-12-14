@@ -131,3 +131,6 @@ keymap('n', '<M-a-k>', vim.lsp.buf.signature_help, { desc = 'LSP: Signature Help
 keymap('n', '<leader><leader>X', '<cmd>source %<CR>', { desc = 'Source Current File' })
 keymap('n', '<leader>X', ':.lua<CR>', { desc = 'Lua Run Current Line' })
 keymap('v', '<leader>X', ':lua<CR>', { desc = 'Lua Run Selection' })
+
+-- Disable s key, in favour of mini.surround
+keymap({ 'n', 'x' }, 's', '<Nop>')
