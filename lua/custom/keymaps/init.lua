@@ -134,3 +134,7 @@ keymap('v', '<leader>X', ':lua<CR>', { desc = 'Lua Run Selection' })
 
 -- Disable s key, in favour of mini.surround
 keymap({ 'n', 'x' }, 's', '<Nop>')
+
+-- Quickfix keybinds
+keymap({ 'n' }, '<M-j>', ':cn<CR>', { desc = 'Next in Quickfix' })
+keymap({ 'n' }, '<M-k>', ':cp<CR>', { desc = 'Previous in Quickfix' })
