@@ -138,3 +138,6 @@ keymap({ 'n', 'x' }, 's', '<Nop>')
 -- Quickfix keybinds
 keymap({ 'n' }, '<M-j>', ':cn<CR>', { desc = 'Next in Quickfix' })
 keymap({ 'n' }, '<M-k>', ':cp<CR>', { desc = 'Previous in Quickfix' })
+
+-- Oil
+keymap({ 'n' }, '-', ':Oil<CR>', { desc = 'Oil' })
