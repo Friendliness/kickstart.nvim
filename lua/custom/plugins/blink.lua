@@ -23,6 +23,9 @@ return {
         preset = 'default',
         cmdline = {
           preset = 'enter',
+          ['<CR>'] = { 'accept', 'fallback' },
+          ['<Tab>'] = { 'select_next', 'fallback' },
+          ['<S-Tab>'] = { 'select_prev', 'fallback' },
         },
       },
 
