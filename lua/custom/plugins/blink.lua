@@ -21,6 +21,9 @@ return {
       -- your own keymap.
       keymap = {
         preset = 'default',
+        cmdline = {
+          preset = 'enter',
+        },
       },
 
       appearance = {
