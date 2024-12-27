@@ -21,9 +21,6 @@ return {
       -- your own keymap.
       keymap = {
         preset = 'default',
-        ['<CR>'] = { 'select_and_accept', 'fallback' },
-        ['<Tab>'] = { 'select_next', 'fallback' },
-        ['<S-Tab>'] = { 'select_prev', 'fallback' },
       },
 
       appearance = {
