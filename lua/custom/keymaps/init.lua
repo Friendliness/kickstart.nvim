@@ -125,7 +125,7 @@ keymap('n', '<leader>Sd', function()
 end, { desc = '[S]ession stop' })
 
 -- LSP: Signature Help
-keymap('n', '<M-a-k>', vim.lsp.buf.signature_help, { desc = 'LSP: Signature Help' })
+keymap({ 'n', 'i' }, '<M-a-k>', vim.lsp.buf.signature_help, { desc = 'LSP: Signature Help' })
 
 -- Source keymaps
 keymap('n', '<leader><leader>X', '<cmd>source %<CR>', { desc = 'Source Current File' })
