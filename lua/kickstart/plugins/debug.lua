@@ -54,15 +54,15 @@ return {
     }
 
     -- Basic debugging keymaps, feel free to change to your liking!
-    vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
+    vim.keymap.set({ 'n', 'i' }, '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
     vim.keymap.set('n', '<leader>dl', dap.run_last, { desc = 'Debug: [d]ebug run [l]ast' })
-    vim.keymap.set('n', '<F1>', dap.step_into, { desc = 'Debug: Step Into' })
-    vim.keymap.set('n', '<F2>', dap.step_over, { desc = 'Debug: Step Over' })
-    vim.keymap.set('n', '<F3>', dap.step_out, { desc = 'Debug: Step Out' })
-    vim.keymap.set('n', '<F4>', dap.step_back, { desc = 'Debug: Step Back' })
+    vim.keymap.set({ 'n', 'i' }, '<F1>', dap.step_into, { desc = 'Debug: Step Into' })
+    vim.keymap.set({ 'n', 'i' }, '<F2>', dap.step_over, { desc = 'Debug: Step Over' })
+    vim.keymap.set({ 'n', 'i' }, '<F3>', dap.step_out, { desc = 'Debug: Step Out' })
+    vim.keymap.set({ 'n', 'i' }, '<F4>', dap.step_back, { desc = 'Debug: Step Back' })
     vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
-    vim.keymap.set('n', '<F6>', dap.run_to_cursor, { desc = 'Debug: Run to cursor' })
-    vim.keymap.set('n', '<F9>', dap.disconnect, { desc = 'Debug: Stop debugging' })
+    vim.keymap.set({ 'n', 'i' }, '<F6>', dap.run_to_cursor, { desc = 'Debug: Run to cursor' })
+    vim.keymap.set({ 'n', 'i' }, '<F9>', dap.disconnect, { desc = 'Debug: Stop debugging' })
     vim.keymap.set('n', '<space>?', function()
       require('dapui').eval(nil, { enter = true })
     end, { desc = 'Debug: Eval under cursor' })
@@ -93,7 +93,7 @@ return {
     }
 
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-    vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
+    vim.keymap.set({ 'n', 'i' }, '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
