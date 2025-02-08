@@ -715,9 +715,9 @@ require('lazy').setup({
         -- Conform can also run multiple formatters sequentially
         python = { 'ruff_format', 'ruff' },
 
-        -- You can use a sub-list to tell conform to run *until* a formatter
+        -- You can use stop_after_first to tell conform to run *until* a formatter
         -- is found.
-        javascript = { { 'prettierd', 'prettier' } },
+        javascript = { 'prettierd', 'prettier', stop_after_first = true },
 
         html = { 'prettier' },
       },
