@@ -67,5 +67,14 @@ ls.add_snippets(nil, {
       text ')',
       insert(0),
     }),
+    snip({
+      trig = 'eee',
+      name = 'go_error_not_equals_nil',
+      dscr = 'If error != nil ',
+    }, {
+      text { 'if err != nil {', '' },
+      insert(0),
+      text { '', '}' },
+    }),
   },
 })
