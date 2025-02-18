@@ -21,7 +21,7 @@ local tir = function()
 end
 
 local botlogerror = function()
-  return { 'self.bot._logging.error()' }
+  return { 'self.bot._logging.error(f"[{self.__class__.__name__}]: ' }
 end
 
 -- Endblock
@@ -36,7 +36,11 @@ ls.add_snippets(nil, {
       namr = 'try_interaction_respond',
       dscr = 'Try interaction respond snippet',
     }, {
-      func(tir, {}),
+      text { 'interaction.client.try_interaction_respond(interaction=interaction, content=' },
+      insert(1),
+      text { ', ephemeral=' },
+      insert(2),
+      text { ')' },
     }),
 
     snip({
@@ -44,7 +48,11 @@ ls.add_snippets(nil, {
       namr = 'self.bot_logging.error',
       dscr = 'Bot logging error',
     }, {
-      func(botlogerror, {}),
+      text { 'self.bot._logging.error(f"[{self.__class__.__name__} ' },
+      insert(2),
+      text { ']: ' },
+      insert(1),
+      text { '")' },
     }),
     snip({
       trig = 'endbl',
@@ -65,7 +73,7 @@ ls.add_snippets(nil, {
         return snip.env.TM_SELECTED_TEXT[1] or {}
       end, {}),
       text ')',
-      insert(0),
+      insert(1),
     }),
     snip({
       trig = 'eee',
@@ -73,7 +81,7 @@ ls.add_snippets(nil, {
       dscr = 'If error != nil ',
     }, {
       text { 'if err != nil {', '' },
-      insert(0),
+      insert(1),
       text { '', '}' },
     }),
   },
