@@ -95,6 +95,26 @@ end, { desc = '[S]earch h[i]dden files' })
 keymap('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[S]earch [B]uffers' })
 keymap('n', '<leader>sm', require('custom.configs.telescope.multigrep').setup, { desc = '[S]earch [M]ultigrep' })
 
+-- Make a yank selection work for visual mode
+keymap('v', '<leader>sw', function()
+  vim.cmd 'normal! "vy' -- Yank selection to the v register, this is needed to end visual mode and mark the visual selection properly
+  local vstart = vim.fn.getpos "'<"
+  local vend = vim.fn.getpos "'>"
+  local start_line, start_col = vstart[2], vstart[3]
+  local end_line, end_col = vend[2], vend[3]
+  local lines = vim.fn.getline(start_line, end_line)
+  local resp = ''
+  if #lines == 0 then
+    return
+  elseif #lines == 1 then
+    resp = lines[1]:sub(start_col, end_col)
+  else
+    return
+  end
+  require('telescope.builtin').grep_string { search = resp }
+  return resp
+end, { desc = '[S]earch [W]ord' })
+
 -- Terminal
 keymap('n', '<leader>ot', ':split term://zsh<CR>:resize 10<CR>', { desc = '[O]pen [T]erminal' })
 -- Remap escape in the terminal to exit terminal mode
