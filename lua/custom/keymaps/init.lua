@@ -95,7 +95,7 @@ end, { desc = '[S]earch h[i]dden files' })
 keymap('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[S]earch [B]uffers' })
 keymap('n', '<leader>sm', require('custom.configs.telescope.multigrep').setup, { desc = '[S]earch [M]ultigrep' })
 
--- Make a yank selection work for visual mode
+-- Make a visual selection work for Telescope search
 keymap('v', '<leader>sw', function()
   vim.cmd 'normal! "vy' -- Yank selection to the v register, this is needed to end visual mode and mark the visual selection properly
   local vstart = vim.fn.getpos "'<"
