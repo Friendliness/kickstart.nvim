@@ -48,6 +48,9 @@ keymap('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move Line Up' })
 -- Substitute from register
 keymap('n', '<leader>z', '%s/<C-R><C-W>/<C-R>0/g<CR>', { desc = 'Substitue all from register' })
 
+-- Search in visual selection
+keymap('x', 'g/', '<Esc>/\\%V', { desc = 'Search in visual selection' })
+
 -- Trouble
 keymap('n', '<leader>tx', function()
   require('trouble').toggle()
