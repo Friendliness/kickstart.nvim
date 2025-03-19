@@ -6,11 +6,12 @@ end, {
 })
 
 vim.api.nvim_create_autocmd('BufRead', {
-  pattern = '*.py',
+  pattern = '*.py,*.go',
   callback = function()
     -- Makes the folds opened by default
     vim.opt_local.foldenable = true
-    vim.opt_local.foldmethod = 'indent'
+    vim.opt_local.foldmethod = 'expr'
+    vim.opt_local.foldexpr = 'nvim_treesitter#foldexpr()'
     vim.opt_local.foldlevel = 99
   end,
 })
