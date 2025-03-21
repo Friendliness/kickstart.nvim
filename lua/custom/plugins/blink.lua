@@ -20,6 +20,11 @@ return {
       -- see the "default configuration" section below for full documentation on how to define
       -- your own keymap.
       cmdline = {
+        completion = {
+          menu = {
+            auto_show = true,
+          },
+        },
         keymap = {
           preset = 'enter',
           ['<C-y>'] = { 'accept', 'fallback' },
