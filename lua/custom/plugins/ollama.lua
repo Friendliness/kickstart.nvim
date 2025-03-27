@@ -27,30 +27,32 @@ return {
 
   ---@type Ollama.Config
   opts = {
+    -- Do this after configuring podman gpu access
     -- NOTE: If the model isn't available, you may need to pull it in the container:
     -- docker exec -it ollama bash
     -- ollama pull deepseek-r1:32b
 
     -- $ docker run -d --rm --gpus=all -v <volume>:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
-    model = 'deepseek-r1:32b',
-    url = 'http://127.0.0.1:11434',
-    serve = {
-      command = 'podman',
-      args = {
-        'run',
-        '-d',
-        '--rm',
-        '--gpus=all',
-        '-v',
-        'ollama:/root/.ollama',
-        '-p',
-        '11434:11434',
-        '--name',
-        'ollama',
-        'ollama/ollama',
-      },
-      stop_command = 'podman',
-      stop_args = { 'stop', 'ollama' },
-    },
+    --   model = 'deepseek-r1:32b',
+    --   -- model = "mistral",
+    --   url = 'http://127.0.0.1:11434',
+    --   serve = {
+    --     command = 'podman',
+    --     args = {
+    --       'run',
+    --       '-d',
+    --       '--rm',
+    --       '--gpus=all',
+    --       '-v',
+    --       'ollama:/root/.ollama',
+    --       '-p',
+    --       '11434:11434',
+    --       '--name',
+    --       'ollama',
+    --       'ollama/ollama',
+    --     },
+    --     stop_command = 'podman',
+    --     stop_args = { 'stop', 'ollama' },
+    --   },
   },
 }
