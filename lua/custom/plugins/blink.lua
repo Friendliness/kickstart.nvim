@@ -61,6 +61,9 @@ return {
       -- elsewhere in your config, without redefining it, via `opts_extend`
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
+        per_filetype = {
+          codecompanion = { 'codecompanion' },
+        },
         -- optionally disable cmdline completions
         -- cmdline = {},
       },

@@ -24,7 +24,6 @@ return {
       mode = { 'n', 'v' },
     },
   },
-
   ---@type Ollama.Config
   opts = {
     -- Do this after configuring podman gpu access
@@ -33,7 +32,25 @@ return {
     -- ollama pull deepseek-r1:32b
 
     -- $ docker run -d --rm --gpus=all -v <volume>:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
-    --   model = 'deepseek-r1:32b',
+    model = 'deepseek-r1:32b',
+    prompts = {
+      Ask_About_Code = {
+        action = 'display_prompt',
+      },
+      Simplify_Code = {
+        action = 'display_replace',
+      },
+      Explain_Code = {
+        action = 'display_prompt',
+      },
+      Modify_Code = {
+        action = 'display_replace',
+      },
+      Generate_Code = {
+        action = 'display_insert',
+      },
+    },
+
     --   -- model = "mistral",
     --   url = 'http://127.0.0.1:11434',
     --   serve = {
