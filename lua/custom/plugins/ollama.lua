@@ -33,22 +33,12 @@ return {
 
     -- $ docker run -d --rm --gpus=all -v <volume>:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
     model = 'deepseek-r1:32b',
-    prompts = {
-      Ask_About_Code = {
-        action = 'display_prompt',
-      },
-      Simplify_Code = {
-        action = 'display_replace',
-      },
-      Explain_Code = {
-        action = 'display_prompt',
-      },
-      Modify_Code = {
-        action = 'display_replace',
-      },
-      Generate_Code = {
-        action = 'display_insert',
-      },
+    serve = {
+      on_start = false,
+      command = 'ollama',
+      args = { 'run', 'deepseek-r1:32b' },
+      stop_command = 'ollama',
+      stop_args = { 'stop', 'deepseek-r1:32b' },
     },
 
     --   -- model = "mistral",
