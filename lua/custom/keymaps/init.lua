@@ -161,3 +161,9 @@ keymap({ 'n' }, '<M-k>', ':cp<CR>', { desc = 'Previous in Quickfix' })
 
 -- Oil
 keymap({ 'n' }, '-', ':Oil<CR>', { desc = 'Oil' })
+
+-- Enable or disable diagnostics in current buffer
+keymap({ 'n' }, '<leader>dt', function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled { bufnr = 0 }, { bufnr = 0 })
+  print('Diagnostics set to: ' .. tostring(vim.diagnostic.is_enabled { bufnr = 0 }))
+end)
