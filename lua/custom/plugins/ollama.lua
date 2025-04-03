@@ -32,13 +32,13 @@ return {
     -- ollama pull codellama:7b
 
     -- $ docker run -d --rm --gpus=all -v <volume>:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
-    model = 'codellama:7b',
+    model = 'qwen2.5-coder:7b',
     serve = {
       on_start = false,
       command = 'ollama',
-      args = { 'run', 'codellama:7b' },
+      args = { 'run', 'qwen2.5-coder:7b' },
       stop_command = 'ollama',
-      stop_args = { 'stop', 'codellama:7b' },
+      stop_args = { 'stop', 'qwen2.5-coder:7b' },
     },
 
     --   -- model = "mistral",

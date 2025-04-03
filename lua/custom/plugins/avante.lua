@@ -6,10 +6,23 @@ return {
     -- add any opts here
     -- for example
     provider = 'ollama',
+    auto_suggestions_provider = 'ollama',
+    cursor_planning_provider = 'ollama',
     ollama = {
       model = 'qwen2.5-coder:7b',
     },
-    auto_suggestions_provider = 'ollama',
+    mappings = {
+      ---@class AvanteConflictMappings
+      diff = {
+        ours = '<leader>aco',
+        theirs = '<leader>act',
+        all_theirs = '<leader>aca',
+        both = '<leader>acb',
+        cursor = '<leader>acc',
+        next = ']x',
+        prev = '[x',
+      },
+    },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = 'make BUILD_FROM_SOURCE=true',
