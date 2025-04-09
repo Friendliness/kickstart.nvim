@@ -15,7 +15,7 @@ local diag_config2 = {
   virtual_lines = false,
 }
 vim.diagnostic.config(diag_config1)
-local diag_config_basic = false
+local diag_config_basic = true
 vim.keymap.set('n', 'gK', function()
   diag_config_basic = not diag_config_basic
   if diag_config_basic then
