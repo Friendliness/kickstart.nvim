@@ -1,4 +1,9 @@
 local diag_config1 = {
+  virtual_text = true,
+  virtual_lines = false,
+}
+
+local diag_config2 = {
   virtual_text = {
     severity = {
       max = vim.diagnostic.severity.WARN,
@@ -9,10 +14,6 @@ local diag_config1 = {
       min = vim.diagnostic.severity.ERROR,
     },
   },
-}
-local diag_config2 = {
-  virtual_text = true,
-  virtual_lines = false,
 }
 vim.diagnostic.config(diag_config1)
 local diag_config_basic = true
