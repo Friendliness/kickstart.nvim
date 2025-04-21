@@ -168,3 +168,8 @@ keymap({ 'n' }, '<leader>dt', function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled { bufnr = 0 }, { bufnr = 0 })
   print('Diagnostics set to: ' .. tostring(vim.diagnostic.is_enabled { bufnr = 0 }))
 end, { desc = '[D]iagnostics [T]oggle' })
+
+vim.opt.spell = true
+vim.opt.spelllang = 'en_gb'
+-- Spell correct
+keymap({ 'i', 'n' }, '<A-l>', '<Esc>[s1z=1', { desc = 'Fix previous spelling mistake' })
