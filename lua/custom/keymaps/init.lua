@@ -97,6 +97,7 @@ keymap('n', '<leader>si', function()
 end, { desc = '[S]earch h[i]dden files' })
 keymap('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[S]earch [B]uffers' })
 keymap('n', '<leader>sm', require('custom.configs.telescope.multigrep').setup, { desc = '[S]earch [M]ultigrep' })
+keymap('n', '<leader>st', '<cmd>Telescope grapple tags<cr>', { desc = '[S]earch Grapple [T]ags' })
 
 -- Make a visual selection work for Telescope search
 keymap('v', '<leader>sw', function()
