@@ -172,4 +172,4 @@ end, { desc = '[D]iagnostics [T]oggle' })
 -- vim.opt.spell = false
 vim.opt.spelllang = 'en_gb'
 -- Spell correct
-keymap({ 'i', 'n' }, '<A-l>', '<Esc>[s1z=1', { desc = 'Fix previous spelling mistake' })
+keymap({ 'i', 'n' }, '<A-a>', '<Esc>[s1z=1', { desc = 'Fix previous spelling mistake' })
