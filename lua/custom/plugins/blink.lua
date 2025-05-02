@@ -38,7 +38,6 @@ return {
           ['<S-Tab>'] = { 'select_prev', 'fallback' },
         },
       },
-
       completion = {
         list = {
           selection = {
