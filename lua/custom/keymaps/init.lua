@@ -175,3 +175,8 @@ end, { desc = '[D]iagnostics [T]oggle' })
 vim.opt.spelllang = 'en_gb'
 -- Spell correct
 keymap({ 'i', 'n' }, '<A-a>', '<Esc>[s1z=1', { desc = 'Fix previous spelling mistake' })
+
+-- Barbar - the bar at the top
+keymap('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', { desc = 'Move buffer to left' })
+keymap('n', '<A->>', '<Cmd>BufferMoveNext<CR>', { desc = 'Move buffer to right' })
+keymap('n', '<A-p>', '<Cmd>BufferPin<CR>', { desc = 'Pin/unpin buffer' })
