@@ -20,10 +20,6 @@ local tir = function()
   return { 'interaction.client.try_interaction_respond()' }
 end
 
-local botlogerror = function()
-  return { 'self.bot._logging.error(f"[{self.__class__.__name__}]: ' }
-end
-
 -- Endblock
 local endbl = function()
   return { '{% endblock %}' }
@@ -43,17 +39,6 @@ ls.add_snippets(nil, {
       text { ')' },
     }),
 
-    snip({
-      trig = 'sble',
-      namr = 'self.bot_logging.error',
-      dscr = 'Bot logging error',
-    }, {
-      text { 'self.bot._logging.error(f"[{self.__class__.__name__} ' },
-      insert(2),
-      text { ']: ' },
-      insert(1),
-      text { '")' },
-    }),
     snip({
       trig = 'endbl',
       namr = 'jinja_2_endblock',
@@ -84,5 +69,10 @@ ls.add_snippets(nil, {
       insert(1),
       text { '', '}' },
     }),
+    snip({
+      trig = 'dbpy',
+      name = 'import_debugpy',
+      dscr = 'Import debugpydbstub',
+    }, { text 'from utils.debug import debugpy' }),
   },
 })
