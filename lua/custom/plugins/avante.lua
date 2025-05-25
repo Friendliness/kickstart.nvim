@@ -8,9 +8,6 @@ return {
     provider = 'ollama',
     auto_suggestions_provider = 'ollama',
     cursor_planning_provider = 'ollama',
-    behaviour = {
-      enable_cursor_planning_mode = true,
-    },
     ollama = {
       model = 'qwen2.5-coder:7b',
     },
