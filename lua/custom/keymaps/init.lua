@@ -180,3 +180,6 @@ keymap({ 'i', 'n' }, '<A-a>', '<Esc>[s1z=1', { desc = 'Fix previous spelling mis
 keymap('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', { desc = 'Move buffer to left' })
 keymap('n', '<A->>', '<Cmd>BufferMoveNext<CR>', { desc = 'Move buffer to right' })
 keymap('n', '<A-p>', '<Cmd>BufferPin<CR>', { desc = 'Pin/unpin buffer' })
+
+-- Markview toggle
+keymap('n', '<leader>mt', '<Cmd>Markview toggle<CR>', { desc = 'Markview Toggle' })
