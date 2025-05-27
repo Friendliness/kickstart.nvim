@@ -422,6 +422,9 @@ require('lazy').setup({
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'grapple')
+      pcall(require('telescope').load_extension, 'dap')
+      pcall(require('telescope').load_extension, 'git_diffs')
+      pcall(require('telescope').load_extension, 'luasnip')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
