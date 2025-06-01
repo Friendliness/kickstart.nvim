@@ -24,6 +24,7 @@ return {
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
     'mfussenegger/nvim-dap-python',
+    'jbyuki/one-small-step-for-vimkind',
     config = function()
       require('dap-python').setup '~/.virtualenvs/debugpy/bin/python'
     end,
@@ -31,25 +32,38 @@ return {
   config = function()
     local dap = require 'dap'
     local dapui = require 'dapui'
+    dap.configurations.lua = {
+      {
+        type = 'nlua',
+        request = 'attach',
+        name = 'Attach to running Neovim instance',
+      },
+    }
+
+    dap.adapters.nlua = function(callback, config)
+      callback { type = 'server', host = config.host or '127.0.0.1', port = config.port or 8086 }
+    end
 
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
       automatic_installation = true,
-
-      -- You can provide additional configuration to the handlers,
-      -- see mason-nvim-dap README for more information
-      handlers = {
-        function()
-          require('dap-python').setup '~/.virtualenvs/debugpy/bin/python'
-        end,
-      },
-
       -- You'll need to check that you have the required things installed
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'python',
+        'lua',
+      },
+
+      -- You can provide additional configuration to the handlers,
+      -- see mason-nvim-dap README for more information
+      handlers = {
+        function(config)
+          require('mason-nvim-dap').default_setup(config) -- don't forget this!
+          require('dap-python').setup '~/.virtualenvs/debugpy/bin/python'
+        end,
       },
     }
 
@@ -69,6 +83,19 @@ return {
     vim.keymap.set('n', '<leader>B', function()
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = 'Debug: Set Breakpoint' })
+    vim.keymap.set('n', '<leader>do', function()
+      require('osv').launch { port = 8086 }
+    end, { noremap = true })
+
+    vim.keymap.set('n', '<leader>dw', function()
+      local widgets = require 'dap.ui.widgets'
+      widgets.hover()
+    end)
+
+    vim.keymap.set('n', '<leader>df', function()
+      local widgets = require 'dap.ui.widgets'
+      widgets.centered_float(widgets.frames)
+    end)
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
