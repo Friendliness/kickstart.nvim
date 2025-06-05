@@ -9,7 +9,7 @@ return {
     -- refer to the configuration section below
     bigfile = { enabled = true },
     dashboard = {
-      enabled = true,
+      enabled = false,
       sections = {
         { section = 'header' },
         { icon = ' ', title = 'Keymaps', section = 'keys', indent = 2, padding = 1, { action = '<leader>sf', key = 'f' } },
