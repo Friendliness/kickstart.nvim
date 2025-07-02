@@ -8,8 +8,19 @@ return {
     provider = 'ollama',
     auto_suggestions_provider = 'ollama',
     cursor_planning_provider = 'ollama',
-    ollama = {
-      model = 'qwen2.5-coder:7b',
+    providers = {
+      ollama = {
+        model = 'qwen2.5-coder:7b',
+        endpoint = 'http://127.0.0.1:11434',
+        timeout = 30000, -- Timeout in milliseconds
+        extra_request_body = {
+          options = {
+            temperature = 0.75,
+            num_ctx = 20480,
+            keep_alive = '5m',
+          },
+        },
+      },
     },
     mappings = {
       ---@class AvanteConflictMappings
@@ -25,7 +36,8 @@ return {
     },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-  build = 'make BUILD_FROM_SOURCE=true',
+  -- build = 'make BUILD_FROM_SOURCE=true',
+  build = 'make',
   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
   dependencies = {
     'nvim-treesitter/nvim-treesitter',
