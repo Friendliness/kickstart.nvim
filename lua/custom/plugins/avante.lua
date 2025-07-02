@@ -21,6 +21,7 @@ return {
           },
         },
       },
+      -- copilot = {},
     },
     mappings = {
       ---@class AvanteConflictMappings
@@ -50,7 +51,7 @@ return {
     'hrsh7th/nvim-cmp', -- autocompletion for avante commands and mentions
     'ibhagwan/fzf-lua', -- for file_selector provider fzf
     'nvim-tree/nvim-web-devicons', -- or echasnovski/mini.icons
-    'zbirenbaum/copilot.lua', -- for providers='copilot'
+    -- 'zbirenbaum/copilot.lua', -- for providers='copilot' -- disabled for now because we use the copilot plugin of tpope directly
     {
       -- support for image pasting
       'HakonHarnes/img-clip.nvim',
