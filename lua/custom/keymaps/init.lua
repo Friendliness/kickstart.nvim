@@ -183,3 +183,6 @@ keymap('n', '<A-p>', '<Cmd>BufferPin<CR>', { desc = 'Pin/unpin buffer' })
 
 -- Markview toggle
 keymap('n', '<leader>mt', '<Cmd>Markview toggle<CR>', { desc = 'Markview Toggle' })
+
+-- Search inside of selection
+keymap('x', '<Esc>/\\%V', { desc = 'Search inside of selection' })
