@@ -46,7 +46,7 @@ keymap('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move Line Down' })
 keymap('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move Line Up' })
 
 -- Substitute from register
-keymap('n', '<leader>z', '%s/<C-R><C-W>/<C-R>0/g<CR>', { desc = 'Substitue all from register' })
+keymap('n', '<leader>zz', ':%s/<C-r><C-w>/<C-R>0/g<CR>', { desc = 'Substitue all from register' })
 
 -- Search in visual selection
 keymap('x', 'g/', '<Esc>/\\%V', { desc = 'Search in visual selection' })
@@ -186,3 +186,8 @@ keymap('n', '<leader>mt', '<Cmd>Markview toggle<CR>', { desc = 'Markview Toggle'
 
 -- Search inside of selection
 keymap('x', '<M-/>', '<Esc>/\\%V', { desc = 'Search inside of selection' })
+
+-- CodeCompanion
+keymap('n', '<leader>cci', '<Cmd>CodeCompanion<CR>', { desc = '[C]ode[C]ompanion [I]nline' })
+keymap('n', '<leader>cca', '<Cmd>CodeCompanionAction<CR>', { desc = '[C]ode[C]ompanion [A]ction' })
+keymap('n', '<leader>ccc', '<Cmd>CodeCompanionChat<CR>', { desc = '[C]ode[C]ompanion [C]hat' })

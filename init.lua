@@ -629,7 +629,7 @@ require('lazy').setup({
         },
 
         docker_compose_language_service = {},
-        pyright = {
+        basedpyright = {
           settings = {
             disableOrganizeImports = true,
             python = {
