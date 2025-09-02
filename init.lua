@@ -629,19 +629,20 @@ require('lazy').setup({
         },
 
         docker_compose_language_service = {},
-        basedpyright = {
-          settings = {
-            disableOrganizeImports = true,
-            python = {
-              analysis = {
-                typeCheckingMode = 'standard',
-                autoSearchPaths = true,
-                useLibraryCodeForTypes = true,
-              },
-              disableLanguageServices = false,
-            },
-          },
-        },
+        basedpyright = {},
+        -- pyright = {
+        --   settings = {
+        --     disableOrganizeImports = true,
+        --     python = {
+        --       analysis = {
+        --         typeCheckingMode = 'standard',
+        --         autoSearchPaths = true,
+        --         useLibraryCodeForTypes = true,
+        --       },
+        --       disableLanguageServices = false,
+        --     },
+        --   },
+        -- },
         ruff = {},
         rust_analyzer = {
           ['rust-analyzer'] = {
@@ -862,7 +863,7 @@ require('lazy').setup({
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
   { -- Collection of various small independent plugins/modules
-    'echasnovski/mini.nvim',
+    'nvim-mini/mini.nvim',
     config = function()
       -- Better Around/Inside textobjects
       --
