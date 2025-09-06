@@ -605,6 +605,7 @@ require('lazy').setup({
         -- clangd = {},
         gopls = {},
         html = { filetypes = { 'html', 'twig', 'hbs' } },
+        ['htmx-lsp'] = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -629,34 +630,33 @@ require('lazy').setup({
         },
 
         docker_compose_language_service = {},
-        basedpyright = {},
-        -- pyright = {
-        --   settings = {
-        --     disableOrganizeImports = true,
-        --     python = {
-        --       analysis = {
-        --         typeCheckingMode = 'standard',
-        --         autoSearchPaths = true,
-        --         useLibraryCodeForTypes = true,
-        --       },
-        --       disableLanguageServices = false,
-        --     },
-        --   },
-        -- },
-        ruff = {},
-        rust_analyzer = {
-          ['rust-analyzer'] = {
-            cargo = {
-              features = 'all',
-            },
-            checkOnSave = true,
-            check = {
-              command = 'clippy',
+        -- basedpyright = {},
+        pyright = {
+          settings = {
+            disableOrganizeImports = true,
+            python = {
+              analysis = {
+                typeCheckingMode = 'standard',
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+              },
+              disableLanguageServices = false,
             },
           },
         },
-        tailwindcss = {},
+        ruff = {},
+        ['rust-analyzer'] = {
+          cargo = {
+            features = 'all',
+          },
+          checkOnSave = true,
+          check = {
+            command = 'clippy',
+          },
+        },
         svelte = {},
+        ['sql-formatter'] = {},
+        tailwindcss = {},
         jsonls = {},
         -- nix
         -- nil_ls = {
