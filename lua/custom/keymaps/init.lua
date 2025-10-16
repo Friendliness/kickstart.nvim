@@ -163,7 +163,10 @@ keymap({ 'n' }, '<M-j>', ':cn<CR>', { desc = 'Next in Quickfix' })
 keymap({ 'n' }, '<M-k>', ':cp<CR>', { desc = 'Previous in Quickfix' })
 
 -- Oil
-keymap({ 'n' }, '-', ':Oil<CR>', { desc = 'Oil' })
+-- keymap({ 'n' }, '-', ':Oil<CR>', { desc = 'Oil' })
+
+-- Fyler
+keymap({ 'n' }, '-', ':Fyler<CR>', { desc = 'Fyler' })
 
 -- Enable or disable diagnostics in current buffer
 keymap({ 'n' }, '<leader>dt', function()

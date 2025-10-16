@@ -437,6 +437,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+      vim.keymap.set('n', '<leader>s%', builtin.current_buffer_fuzzy_find, { desc = '[S]earch Current Buffer [%]' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
@@ -658,6 +659,8 @@ require('lazy').setup({
         ['sql-formatter'] = {},
         tailwindcss = {},
         jsonls = {},
+        bashls = {},
+        -- sqls = {},
         -- nix
         -- nil_ls = {
         --   settings = {
@@ -694,7 +697,9 @@ require('lazy').setup({
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+            -- require('lspconfig')[server_name].setup(server)
+            vim.lsp.config(server_name, server)
+            vim.lsp.enable(server_name)
           end,
         },
       }

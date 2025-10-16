@@ -12,7 +12,7 @@ local choice = ls.choice_node
 local dynamicn = ls.dynamic_node
 
 ls.config.set_config {
-  store_selection_keys = '<leader>ss',
+  store_selection_keys = '<leader>sz',
 }
 
 -- Temporary snippets
