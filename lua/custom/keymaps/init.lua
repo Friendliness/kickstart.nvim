@@ -194,3 +194,12 @@ keymap('x', '<M-/>', '<Esc>/\\%V', { desc = 'Search inside of selection' })
 keymap('n', '<leader>cci', '<Cmd>CodeCompanion<CR>', { desc = '[C]ode[C]ompanion [I]nline' })
 keymap('n', '<leader>cca', '<Cmd>CodeCompanionAction<CR>', { desc = '[C]ode[C]ompanion [A]ction' })
 keymap('n', '<leader>ccc', '<Cmd>CodeCompanionChat<CR>', { desc = '[C]ode[C]ompanion [C]hat' })
+
+-- Strudel
+keymap('n', '<leader><C-s>l', '<Cmd>StrudelLaunch<CR>', { desc = 'Strudel Launch' })
+keymap('n', '<leader><C-s>q', '<Cmd>StrudelQuit<CR>', { desc = 'Strudel Quit' })
+keymap('n', '<leader><C-s>t', '<Cmd>StrudelToggle<CR>', { desc = 'Strudel Toggle' })
+keymap('n', '<leader><C-s>u', '<Cmd>StrudelUpdate<CR>', { desc = 'Strudel Update' })
+keymap('n', '<leader><C-s>s', '<Cmd>StrudelStop<CR>', { desc = 'Strudel Stop' })
+keymap('n', '<leader><C-s>b', '<Cmd>StrudelSetBuffer<CR>', { desc = 'Strudel Set Buffer' })
+keymap('n', '<leader><C-s>x', '<Cmd>StrudelExecute<CR>', { desc = 'Strudel Execute' })
