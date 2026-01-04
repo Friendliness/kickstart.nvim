@@ -632,19 +632,19 @@ require('lazy').setup({
 
         docker_compose_language_service = {},
         -- basedpyright = {},
-        -- pyright = {
-        --   settings = {
-        --     disableOrganizeImports = true,
-        --     python = {
-        --       analysis = {
-        --         typeCheckingMode = 'standard',
-        --         autoSearchPaths = true,
-        --         useLibraryCodeForTypes = true,
-        --       },
-        --       disableLanguageServices = false,
-        --     },
-        --   },
-        -- },
+        pyright = {
+          settings = {
+            disableOrganizeImports = true,
+            python = {
+              analysis = {
+                typeCheckingMode = 'standard',
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+              },
+              disableLanguageServices = false,
+            },
+          },
+        },
         ty = {},
         ruff = {},
         ['rust-analyzer'] = {
