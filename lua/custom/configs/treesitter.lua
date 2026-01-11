@@ -9,5 +9,8 @@ require('nvim-treesitter.config').setup {
         ['<leader>A'] = '@parameter.inner',
       },
     },
+    highlight = {
+      enable = true,
+    },
   },
 }
