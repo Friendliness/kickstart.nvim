@@ -985,7 +985,7 @@ require('lazy').setup({
       for i = 1, #install_langs do
         local lang = install_langs[i]
         vim.api.nvim_create_autocmd('FileType', {
-          pattern = { lang },
+          pattern = lang,
           callback = function()
             vim.treesitter.start()
           end,
