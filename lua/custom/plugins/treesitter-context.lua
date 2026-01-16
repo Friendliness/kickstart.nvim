@@ -3,6 +3,8 @@ return {
   config = function()
     require('treesitter-context').setup {
       enable = true,
+      multiwindow = true,
+      separator = '─',
     }
   end,
 }
