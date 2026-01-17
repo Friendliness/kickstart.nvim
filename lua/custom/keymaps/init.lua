@@ -203,3 +203,8 @@ keymap('n', '<leader><C-s>u', '<Cmd>StrudelUpdate<CR>', { desc = 'Strudel Update
 keymap('n', '<leader><C-s>s', '<Cmd>StrudelStop<CR>', { desc = 'Strudel Stop' })
 keymap('n', '<leader><C-s>b', '<Cmd>StrudelSetBuffer<CR>', { desc = 'Strudel Set Buffer' })
 keymap('n', '<leader><C-s>x', '<Cmd>StrudelExecute<CR>', { desc = 'Strudel Execute' })
+
+-- Treesitter Context
+keymap('n', '[c', function()
+  require('treesitter-context').go_to_context(vim.v.count1)
+end, { silent = true })
