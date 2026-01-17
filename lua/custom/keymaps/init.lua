@@ -205,6 +205,6 @@ keymap('n', '<leader><C-s>b', '<Cmd>StrudelSetBuffer<CR>', { desc = 'Strudel Set
 keymap('n', '<leader><C-s>x', '<Cmd>StrudelExecute<CR>', { desc = 'Strudel Execute' })
 
 -- Treesitter Context
-keymap('n', '[c', function()
+keymap('n', '[C', function()
   require('treesitter-context').go_to_context(vim.v.count1)
 end, { silent = true })
