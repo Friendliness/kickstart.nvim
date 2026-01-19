@@ -47,5 +47,12 @@ return {
       end,
       desc = '[D]elete [B]uffer, delete current buffer',
     },
+    {
+      '<C-o>',
+      function()
+        vim.cmd 'wincmd h'
+      end,
+      mode = 't',
+    },
   },
 }
