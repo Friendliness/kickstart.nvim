@@ -6,16 +6,20 @@ return {
     },
     build = 'make tiktoken',
     opts = {
-      mappings = {
-        reset = {
-          normal = '<C-L>',
-          insert = '<C-L>',
-          callback = function()
-            require('CopilotChat').reset()
-          end,
-        },
-      },
       -- See Configuration section for options
     },
+    config = function(_, opts)
+      require('CopilotChat').setup {
+        mappings = {
+          reset = {
+            normal = '<C-L>',
+            insert = '<C-L>',
+            callback = function()
+              require('CopilotChat').reset()
+            end,
+          },
+        },
+      }
+    end,
   },
 }
