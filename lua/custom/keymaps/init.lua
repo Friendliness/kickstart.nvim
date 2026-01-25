@@ -35,9 +35,6 @@ keymap('n', '<leader>x', vim.cmd.BufferClose, { desc = 'Close buffer' })
 keymap('n', '<leader>gs', vim.cmd.LazyGit, { desc = 'LazyGit' })
 keymap('n', '<leader>lg', vim.cmd.LazyGit, { desc = 'LazyGit' })
 
--- LazySql
-keymap('n', '<leader>ls', vim.cmd.LazySql, { desc = 'LazySql' })
-
 -- Undotree
 keymap('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Undotree' })
 
@@ -74,9 +71,6 @@ end, { desc = 'TroubleToggle [G]oto lsp_[R]eferences' })
 -- Go snippets
 -- In the future I'll create an actual snippet for this
 -- keymap('n', '<leader>ee', 'oif err != nil {<CR>}<Esc>Oreturn err<Esc>', { desc = 'Go snippet for error handling' })
-
--- Neogen -
-keymap('n', '<leader>nf', ":lua require('neogen').generate()<CR>", { desc = 'Neogen generate' })
 
 -- Yank keymap changes
 -- keymap("n", "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
@@ -162,9 +156,6 @@ keymap({ 'n', 'x' }, 's', '<Nop>')
 keymap({ 'n' }, '<M-j>', ':cn<CR>', { desc = 'Next in Quickfix' })
 keymap({ 'n' }, '<M-k>', ':cp<CR>', { desc = 'Previous in Quickfix' })
 
--- Oil
--- keymap({ 'n' }, '-', ':Oil<CR>', { desc = 'Oil' })
-
 -- Fyler
 keymap({ 'n' }, '-', ':Fyler<CR>', { desc = 'Fyler' })
 
@@ -208,3 +199,8 @@ keymap('n', '<leader><C-s>x', '<Cmd>StrudelExecute<CR>', { desc = 'Strudel Execu
 keymap('n', '[C', function()
   require('treesitter-context').go_to_context(vim.v.count1)
 end, { silent = true })
+
+-- Unified Toggle
+keymap('n', '<leader>ht', function()
+  require('unified').toggle()
+end, { desc = 'Unified Toggle' })
