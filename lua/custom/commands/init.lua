@@ -1,3 +1,4 @@
+-- Custom command to dump the output of any command at the cursor position
 vim.api.nvim_create_user_command('Dump', function(x)
   vim.cmd(string.format("put =execute('%s')", x.args))
 end, {
@@ -16,3 +17,13 @@ vim.api.nvim_create_autocmd('ModeChanged', {
     end
   end,
 })
+
+-- Filter the quickfix list based on a pattern
+vim.api.nvim_create_user_command('QfFilter', function(opts)
+  local pattern = opts.args
+  local qf = vim.fn.getqflist()
+  local filtered = vim.tbl_filter(function(item)
+    return string.match(item.text, pattern) ~= nil
+  end, qf)
+  vim.fn.setqflist(filtered, 'r')
+end, { nargs = 1, desc = 'Filter quickfix list by pattern' })
