@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -100,9 +100,11 @@ vim.g.have_nerd_font = false
 
 -- Make line numbers default
 vim.opt.number = true
+
+-- NOTE: Disabled for now to see if I like it better without relative numbers
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
-vim.opt.relativenumber = true
+-- vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -337,18 +339,18 @@ require('lazy').setup({
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-    config = function() -- This is the function that runs, AFTER loading
-      require('which-key').setup()
+    opts = {
+      delay = 0,
+      icons = { mappings = vim.g.have_nerd_font },
+      spec = {
 
-      -- Document existing key chains
-      require('which-key').add {
         { '<leader>c', group = '[C]ode' },
         { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
-      }
-    end,
+      },
+    },
   },
 
   -- NOTE: Plugins can specify dependencies.
@@ -361,7 +363,8 @@ require('lazy').setup({
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
-    tag = 'v0.2.1',
+    version = '*',
+    -- tag = 'v0.2.1',
     -- branch = 'master',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -381,7 +384,7 @@ require('lazy').setup({
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons' },
+      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -483,7 +486,8 @@ require('lazy').setup({
 
       -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
-      { 'folke/neodev.nvim', opts = {} },
+      --  Replaced by lazydev
+      -- { 'folke/neodev.nvim', opts = {} },
       { 'saghen/blink.cmp' },
     },
     config = function()
@@ -901,6 +905,7 @@ require('lazy').setup({
       -- statusline.setup()
       -- local statusline = require 'mini.statusline'
       -- set use_icons to true if you have a Nerd Font
+      -- local statusline = require 'mini.statusline'
       -- statusline.setup { use_icons = vim.g.have_nerd_font }
 
       -- You can configure sections in the statusline by overriding their
@@ -981,16 +986,13 @@ require('lazy').setup({
           },
         },
       }
-      -- Enable treesitter for the installed languages
-      for i = 1, #install_langs do
-        local lang = install_langs[i]
-        vim.api.nvim_create_autocmd('FileType', {
-          pattern = lang,
-          callback = function()
-            vim.treesitter.start()
-          end,
-        })
-      end
+
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = install_langs,
+        callback = function()
+          vim.treesitter.start()
+        end,
+      })
 
       -- There are additional nvim-treesitter modules that you can use to interact
       -- with nvim-treesitter. You should go explore a few and see what interests you:
