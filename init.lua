@@ -117,8 +117,11 @@ vim.opt.showmode = false
 --  See `:help 'clipboard'`
 vim.opt.clipboard = 'unnamedplus'
 
--- Allow copying to system clipboard using OSC 52 escape sequences (e.g. over SSH)
-if vim.fn.has 'nvim-0.10' == 1 then
+-- Allow copying to system clipboard using OSC 52 escape sequences over SSH.
+-- Only enabled over SSH; locally xclip/xsel handle the clipboard directly,
+-- avoiding hangs from OSC 52 paste queries that don't get responses back
+-- through tmux or the local terminal.
+if vim.fn.has 'nvim-0.10' == 1 and vim.env.SSH_CONNECTION then
   vim.g.clipboard = {
     name = 'OSC 52',
     copy = {
