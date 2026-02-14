@@ -204,3 +204,10 @@ end, { silent = true })
 keymap('n', '<leader>ht', function()
   require('unified').toggle()
 end, { desc = 'Unified Toggle' })
+
+-- Bookmarks
+keymap({ 'n', 'v' }, '<leader>mm', '<cmd>BookmarksMark<cr>', { desc = 'Mark current line into active BookmarkList.' })
+keymap({ 'n', 'v' }, '<leader>mo', '<cmd>BookmarksGoto<cr>', { desc = 'Go to bookmark at current active BookmarkList' })
+keymap({ 'n', 'v' }, '<leader>ma', '<cmd>BookmarksCommands<cr>', { desc = 'Find and trigger a bookmark command.' })
+keymap({ 'n', 'v' }, '<leader>mg', '<cmd>BookmarksGrep<cr>', { desc = 'Grep the BookmarksList' })
+keymap({ 'n', 'v' }, '<leader>ml', '<cmd>BookmarksTree<cr>', { desc = 'Bookmarks tree' })
