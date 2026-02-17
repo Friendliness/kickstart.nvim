@@ -205,6 +205,10 @@ keymap('n', '<leader>ht', function()
   require('unified').toggle()
 end, { desc = 'Unified Toggle' })
 
+-- Code Actions in Visual Mode
+
+keymap('v', '<leader>ca', vim.lsp.buf.code_action, { desc = '[C]ode [A]ction' })
+
 -- Bookmarks
 keymap({ 'n', 'v' }, '<leader>mm', '<cmd>BookmarksMark<cr>', { desc = 'Mark current line into active BookmarkList.' })
 keymap({ 'n', 'v' }, '<leader>mo', '<cmd>BookmarksGoto<cr>', { desc = 'Go to bookmark at current active BookmarkList' })
