@@ -982,7 +982,7 @@ require('lazy').setup({
         'vim',
         'bash',
       }
-      require('nvim-treesitter').install { install_langs }
+      require('nvim-treesitter').install(install_langs)
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.config').setup {
         -- ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc' },
