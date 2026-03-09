@@ -12,6 +12,7 @@ return {
   keys = {
     { '<C-,>', '<cmd>ClaudeCodeFocus<cr>', desc = 'Claude Code (Ctrl+,)', mode = { 'n', 'x' } },
     { toggle_key, '<cmd>ClaudeCodeFocus<cr>', desc = 'Claude Code (Alt+,)', mode = { 'n', 'x' } },
+    { '<leader>cs', '<cmd>ClaudeCodeSend<cr>', desc = 'Claude Code Send', mode = { 'v' } },
   },
   opts = {
     terminal = {
@@ -48,7 +49,8 @@ return {
           tmux_left_ctrl = {
             '<C-h>',
             function()
-              vim.cmd('TmuxNavigateLeft')
+              vim.cmd 'stopinsert'
+              vim.cmd 'TmuxNavigateLeft'
             end,
             mode = 't',
             desc = 'Navigate Left (Ctrl+h)',
@@ -56,7 +58,8 @@ return {
           tmux_right_ctrl = {
             '<C-l>',
             function()
-              vim.cmd('TmuxNavigateRight')
+              vim.cmd 'stopinsert'
+              vim.cmd 'TmuxNavigateRight'
             end,
             mode = 't',
             desc = 'Navigate Right (Ctrl+l)',
@@ -64,7 +67,8 @@ return {
           tmux_down_ctrl = {
             '<C-j>',
             function()
-              vim.cmd('TmuxNavigateDown')
+              vim.cmd 'stopinsert'
+              vim.cmd 'TmuxNavigateDown'
             end,
             mode = 't',
             desc = 'Navigate Down (Ctrl+j)',
@@ -72,7 +76,8 @@ return {
           tmux_up_ctrl = {
             '<C-k>',
             function()
-              vim.cmd('TmuxNavigateUp')
+              vim.cmd 'stopinsert'
+              vim.cmd 'TmuxNavigateUp'
             end,
             mode = 't',
             desc = 'Navigate Up (Ctrl+k)',
