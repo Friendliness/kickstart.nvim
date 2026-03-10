@@ -982,7 +982,14 @@ require('lazy').setup({
         'vim',
         'bash',
       }
-      require('nvim-treesitter').install(install_langs)
+      local ts = require 'nvim-treesitter'
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'LazyDone',
+        once = true,
+        callback = function()
+          ts.install(install_langs):wait(300000) -- Wait up to 5 minutes for installation to complete
+        end,
+      })
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.config').setup {
         -- ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc' },
