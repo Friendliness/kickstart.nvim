@@ -981,6 +981,7 @@ require('lazy').setup({
         'vimdoc',
         'vim',
         'bash',
+        'sql',
       }
       local ts = require 'nvim-treesitter'
       vim.api.nvim_create_autocmd('User', {
