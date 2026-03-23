@@ -465,28 +465,35 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>s%', builtin.current_buffer_fuzzy_find, { desc = '[S]earch Current Buffer [%]' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
-      -- Slightly advanced example of overriding default behavior and theme
-      vim.keymap.set('n', '<leader>/', function()
-        -- You can pass additional configuration to Telescope to change the theme, layout, etc.
-        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-          winblend = 10,
-          previewer = false,
-        })
-      end, { desc = '[/] Fuzzily search in current buffer' })
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('telescope-lsp-attach', { clear = true }),
+        callback = function(event)
+          local buf = event.buf
 
-      -- It's also possible to pass additional configuration options.
-      --  See `:help telescope.builtin.live_grep()` for information about particular keys
-      vim.keymap.set('n', '<leader>s/', function()
-        builtin.live_grep {
-          grep_open_files = true,
-          prompt_title = 'Live Grep in Open Files',
-        }
-      end, { desc = '[S]earch [/] in Open Files' })
+          -- Slightly advanced example of overriding default behavior and theme
+          vim.keymap.set('n', '<leader>/', function()
+            -- You can pass additional configuration to Telescope to change the theme, layout, etc.
+            builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+              winblend = 10,
+              previewer = false,
+            })
+          end, { desc = '[/] Fuzzily search in current buffer' })
 
-      -- Shortcut for searching your Neovim configuration files
-      vim.keymap.set('n', '<leader>sn', function()
-        builtin.find_files { cwd = vim.fn.stdpath 'config' }
-      end, { desc = '[S]earch [N]eovim files' })
+          -- It's also possible to pass additional configuration options.
+          --  See `:help telescope.builtin.live_grep()` for information about particular keys
+          vim.keymap.set('n', '<leader>s/', function()
+            builtin.live_grep {
+              grep_open_files = true,
+              prompt_title = 'Live Grep in Open Files',
+            }
+          end, { desc = '[S]earch [/] in Open Files' })
+
+          -- Shortcut for searching your Neovim configuration files
+          vim.keymap.set('n', '<leader>sn', function()
+            builtin.find_files { cwd = vim.fn.stdpath 'config' }
+          end, { desc = '[S]earch [N]eovim files' })
+        end,
+      })
     end,
   },
 
@@ -597,17 +604,28 @@ require('lazy').setup({
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.server_capabilities.documentHighlightProvider then
+          if client and client:supports_method 'textDocument/documentHighlight' then
+            local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
+              group = highlight_augroup,
               callback = vim.lsp.buf.document_highlight,
             })
 
             vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
               buffer = event.buf,
+              group = highlight_augroup,
               callback = vim.lsp.buf.clear_references,
             })
           end
+
+          vim.api.nvim_create_autocmd('LspDetach', {
+            group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
+            callback = function(event2)
+              vim.lsp.buf.clear_references()
+              vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+            end,
+          })
         end,
       })
 
