@@ -5,6 +5,7 @@ return {
       enable = true,
       multiwindow = true,
       separator = '─',
+      max_lines = 10,
     }
   end,
 }
