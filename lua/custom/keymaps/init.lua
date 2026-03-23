@@ -209,6 +209,14 @@ end, { desc = 'Unified Toggle' })
 
 keymap('v', '<leader>ca', vim.lsp.buf.code_action, { desc = '[C]ode [A]ction' })
 
+-- Send visual selection to DAP REPL (handles multiline)
+keymap({ 'n', 'v' }, '<leader>de', function()
+  local start_line = vim.fn.line "'<"
+  local end_line = vim.fn.line "'>"
+  local lines = vim.fn.getline(start_line, end_line)
+  require('dap.repl').execute(table.concat(lines, '\n'))
+end, { desc = '[D]ap R[E]pl execute selection' })
+
 -- Bookmarks
 keymap({ 'n', 'v' }, '<leader>mm', '<cmd>BookmarksMark<cr>', { desc = 'Mark current line into active BookmarkList.' })
 keymap({ 'n', 'v' }, '<leader>mo', '<cmd>BookmarksGoto<cr>', { desc = 'Go to bookmark at current active BookmarkList' })
