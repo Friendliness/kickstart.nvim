@@ -3,4 +3,9 @@ vim.g.copilot_no_tab_map = true
 vim.cmd [[autocmd! BufRead,BufNewFile *.env,*.env.*,*.env-*,.env* set filetype=dotenv]]
 return {
   'github/copilot.vim',
+  init = function()
+    vim.g.copilot_filetypes = {
+      AgenticInput = true,
+    }
+  end,
 }
