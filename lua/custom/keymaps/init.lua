@@ -223,3 +223,11 @@ keymap({ 'n', 'v' }, '<leader>mo', '<cmd>BookmarksGoto<cr>', { desc = 'Go to boo
 keymap({ 'n', 'v' }, '<leader>ma', '<cmd>BookmarksCommands<cr>', { desc = 'Find and trigger a bookmark command.' })
 keymap({ 'n', 'v' }, '<leader>mg', '<cmd>BookmarksGrep<cr>', { desc = 'Grep the BookmarksList' })
 keymap({ 'n', 'v' }, '<leader>ml', '<cmd>BookmarksTree<cr>', { desc = 'Bookmarks tree' })
+
+-- Textobjects
+keymap('n', '<leader>a', function()
+  require('nvim-treesitter-textobjects.swap').swap_next '@parameter.inner'
+end)
+keymap('n', '<leader>A', function()
+  require('nvim-treesitter-textobjects.swap').swap_previous '@parameter.outer'
+end)
