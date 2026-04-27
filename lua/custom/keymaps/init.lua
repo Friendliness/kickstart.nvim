@@ -227,10 +227,10 @@ keymap({ 'n', 'v' }, '<leader>ml', '<cmd>BookmarksTree<cr>', { desc = 'Bookmarks
 -- Textobjects
 keymap('n', '<leader>a', function()
   require('nvim-treesitter-textobjects.swap').swap_next '@parameter.inner'
-end)
+end, { desc = 'Swap inner parameter with next' })
 keymap('n', '<leader>A', function()
-  require('nvim-treesitter-textobjects.swap').swap_previous '@parameter.outer'
-end)
+  require('nvim-treesitter-textobjects.swap').swap_previous '@parameter.inner'
+end, { desc = 'Swap inner parameter with previous' })
 
 -- Wayfinder
 keymap('n', '<leader>wf', '<Plug>(WayfinderOpen)', { desc = 'Wayfinder Open' })
