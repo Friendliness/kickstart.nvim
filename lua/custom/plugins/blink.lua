@@ -39,6 +39,7 @@ return {
         },
       },
       completion = {
+        trigger = { prefetch_on_insert = false }, --  Recommended to avoid unnecessary request
         list = {
           selection = {
             preselect = false,
@@ -60,16 +61,10 @@ return {
       -- default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, via `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'avante' },
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
         -- optionally disable cmdline completions
         -- cmdline = {},
-        providers = {
-          avante = {
-            module = 'blink-cmp-avante',
-            name = 'Avante',
-            opts = {},
-          },
-        },
+        providers = {},
       },
 
       -- experimental signature help support
