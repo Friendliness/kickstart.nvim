@@ -3,7 +3,7 @@ return {
   dependencies = { 'HakonHarnes/img-clip.nvim' },
   event = 'VeryLazy',
   opts = {
-    provider = 'claude-agent-acp', -- or gemini-acp, codex-acp, opencode-acp
+    provider = 'opencode-acp', -- or gemini-acp, codex-acp, opencode-acp
   },
 
   keys = {

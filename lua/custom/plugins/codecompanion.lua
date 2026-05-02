@@ -15,22 +15,62 @@ return {
 
       show_defaults = false,
       strategies = {
-        -- Change the default chat adapter and model
+        --   chat = {
+        --     adapter = 'ollama',
+        --     model = 'codellama:34b',
+        --   },
+        --   inline = {
+        --     adapter = 'ollama',
+        --     model = 'codellama:34b',
+        --   },
+        --   cmd = {
+        --     adapter = 'ollama',
+        --     model = 'codellama:34b',
+        --   },
+        --   workflow = {
+        --     adapter = 'ollama',
+        --     model = 'codellama:34b',
+        --   },
+        -- },
         chat = {
-          adapter = 'ollama',
-          model = 'codellama:34b',
+          adapter = 'openai',
+          opts = {
+            key = '', -- LM Studio doesn't require a key
+            host = 'http://localhost:1234/v1', -- LM Studio default
+            data = {
+              model = 'qwen3.6-35b-a3b',
+            },
+          },
         },
         inline = {
-          adapter = 'ollama',
-          model = 'codellama:34b',
+          adapter = 'openai',
+          opts = {
+            key = '',
+            host = 'http://localhost:1234/v1',
+            data = {
+              model = 'qwen3.6-35b-a3b',
+            },
+          },
         },
         cmd = {
-          adapter = 'ollama',
-          model = 'codellama:34b',
+          adapter = 'openai',
+          opts = {
+            key = '',
+            host = 'http://localhost:1234/v1',
+            data = {
+              model = 'qwen3.6-35b-a3b',
+            },
+          },
         },
         workflow = {
-          adapter = 'ollama',
-          model = 'codellama:34b',
+          adapter = 'openai',
+          opts = {
+            key = '',
+            host = 'http://localhost:1234/v1',
+            data = {
+              model = 'qwen3.6-35b-a3b',
+            },
+          },
         },
       },
       extensions = {
