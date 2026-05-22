@@ -724,6 +724,7 @@ require('lazy').setup({
         --     },
         --   },
         -- },
+        terraform = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -1003,8 +1004,9 @@ require('lazy').setup({
         'typescript',
         'vimdoc',
         'vim',
-        'bash',
         'sql',
+        'terraform',
+        'svelte',
       }
       local alreadyInstalled = require('nvim-treesitter.config').get_installed()
       local parsersToInstall = vim
