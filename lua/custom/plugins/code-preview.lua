@@ -6,6 +6,9 @@ return {
       diff = {
         layout = 'tab', -- or "vsplit" / "inline"
       },
+      neo_tree = {
+        reveal = false,
+      },
     }
   end,
 }
