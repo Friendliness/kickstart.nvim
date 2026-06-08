@@ -1,0 +1,1 @@
+{"hooks":{"PostToolUse":[{"matcher":"","hooks":[{"type":"command","command":"/home/friendliness/.local/share/nvim/lazy/code-preview.nvim/bin/hook-entry.sh codex post"}]}],"PreToolUse":[{"matcher":"","hooks":[{"type":"command","command":"/home/friendliness/.local/share/nvim/lazy/code-preview.nvim/bin/hook-entry.sh codex pre"}]}]}}
