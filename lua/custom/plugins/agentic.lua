@@ -3,9 +3,14 @@ return {
   dependencies = { 'HakonHarnes/img-clip.nvim' },
   event = 'VeryLazy',
   opts = {
-    provider = 'opencode-acp', -- or gemini-acp, codex-acp, opencode-acp
-    -- provider = 'codex-acp', -- or gemini-acp, codex-acp, opencode-acp
+    -- provider = 'opencode-acp', -- or gemini-acp, codex-acp, opencode-acp
+    provider = 'codex-acp', -- or gemini-acp, codex-acp, opencode-acp
+    diff_preview = {
+      enabled = true,
+      layout = 'split',
+    },
   },
+
 
   keys = {
     {
@@ -25,6 +30,7 @@ return {
       desc = 'Agentic add selection or current file to context',
       mode = { 'n', 'v' },
     },
+
     {
       '<A-i>r', -- ai Restore
       function()
@@ -34,6 +40,7 @@ return {
       silent = true,
       mode = { 'n', 'v', 'i' },
     },
+
     {
       '<A-i>d', -- ai Diagnostics
       function()
@@ -42,6 +49,7 @@ return {
       desc = 'Add current line diagnostic to Agentic',
       mode = { 'n' },
     },
+
     {
       '<A-i>D', -- ai all Diagnostics
       function()
