@@ -4,6 +4,7 @@ return {
   event = 'VeryLazy',
   opts = {
     provider = 'opencode-acp', -- or gemini-acp, codex-acp, opencode-acp
+    -- provider = 'codex-acp', -- or gemini-acp, codex-acp, opencode-acp
   },
 
   keys = {
