@@ -3,14 +3,13 @@ return {
   dependencies = { 'HakonHarnes/img-clip.nvim' },
   event = 'VeryLazy',
   opts = {
-    -- provider = 'opencode-acp', -- or gemini-acp, codex-acp, opencode-acp
-    provider = 'codex-acp', -- or gemini-acp, codex-acp, opencode-acp
+    provider = 'opencode-acp', -- or gemini-acp, codex-acp, opencode-acp
+    -- provider = 'codex-acp', -- or gemini-acp, codex-acp, opencode-acp
     diff_preview = {
       enabled = true,
       layout = 'split',
     },
   },
-
 
   keys = {
     {

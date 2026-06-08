@@ -14,7 +14,18 @@ return {
     require('codecompanion').setup {
 
       show_defaults = false,
-      strategies = {
+      adapters = {
+        acp = {
+          codex = function()
+            return require('codecompanion.adapters').extend('codex', {
+              defaults = {
+                auth_method = 'chatgpt',
+              },
+            })
+          end,
+        },
+      },
+      interactions = {
         --   chat = {
         --     adapter = 'ollama',
         --     model = 'codellama:34b',
@@ -33,14 +44,7 @@ return {
         --   },
         -- },
         chat = {
-          adapter = 'openai',
-          opts = {
-            key = '', -- LM Studio doesn't require a key
-            host = 'http://localhost:1234/v1', -- LM Studio default
-            data = {
-              model = 'qwen3.6-35b-a3b',
-            },
-          },
+          adapter = 'codex',
         },
         inline = {
           adapter = 'openai',
@@ -69,6 +73,17 @@ return {
             host = 'http://localhost:1234/v1',
             data = {
               model = 'qwen3.6-35b-a3b',
+            },
+          },
+        },
+        cli = {
+          agent = 'codex',
+          agents = {
+            codex = {
+              cmd = 'codex',
+              args = {},
+              description = 'OpenAI Codex CLI',
+              provider = 'terminal',
             },
           },
         },
