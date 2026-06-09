@@ -8,7 +8,18 @@ return {
       'MeanderingProgrammer/render-markdown.nvim',
       ft = { 'markdown', 'codecompanion' },
     },
-    'ravitemer/mcphub.nvim',
+    {
+      'ravitemer/mcphub.nvim',
+      build = 'npm install -g mcp-hub@latest',
+
+      config = function()
+        require('mcphub').setup {
+          config = vim.fn.expand '~/.config/mcphub/servers.json',
+          auto_approve = false,
+          auto_toggle_mcp_servers = true,
+        }
+      end,
+    },
   },
   config = function()
     require('codecompanion').setup {
@@ -95,7 +106,7 @@ return {
           opts = {
             make_tools = true,
             show_server_tools_in_chat = true,
-            make_vars = true,
+            make_vars = false,
             make_slash_commands = true,
             show_result_in_chat = true,
           },
