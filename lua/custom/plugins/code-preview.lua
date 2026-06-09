@@ -3,7 +3,7 @@ return {
   config = function()
     require('code-preview').setup {
       diff = {
-        layout = 'vsplit', -- or "vsplit" / "inline"
+        layout = 'tab', -- "tab" / "vsplit" / "inline"
       },
       neo_tree = {
         reveal = false,
