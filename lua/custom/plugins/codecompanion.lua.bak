@@ -10,13 +10,13 @@ return {
     },
     {
       'ravitemer/mcphub.nvim',
-      build = 'npm install -g mcp-hub@latest',
+      -- build = 'npm install -g mcp-hub@latest',
 
       config = function()
         require('mcphub').setup {
           config = vim.fn.expand '~/.config/mcphub/servers.json',
           auto_approve = false,
-          auto_toggle_mcp_servers = true,
+          auto_toggle_mcp_servers = false,
         }
       end,
     },
