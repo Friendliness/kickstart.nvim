@@ -6,6 +6,7 @@ return {
   init = function()
     vim.g.copilot_filetypes = {
       AgenticInput = true,
+      dotenv = false,
     }
   end,
 }
