@@ -1,7 +1,8 @@
 return {
   'catppuccin/nvim',
   name = 'catppuccin',
-  priority = 1001,
+  enabled = true,
+  priority = 2,
 
   config = function()
     require('catppuccin').setup {
