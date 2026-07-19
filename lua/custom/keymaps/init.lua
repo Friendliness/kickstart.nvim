@@ -86,9 +86,9 @@ keymap('x', '<leader>P', '"_dP', { noremap = true, silent = true, desc = 'Paste 
 keymap({ 'n', 'v' }, '<leader>f', vim.lsp.buf.format, { desc = '[F]ormat Buffer' })
 
 -- Telescope
-keymap('n', '<leader>si', function()
-  require('telescope.builtin').find_files { hidden = true }
-end, { desc = '[S]earch h[i]dden files' })
+-- keymap('n', '<leader>si', function()
+--   require('telescope.builtin').find_files { hidden = true }
+-- end, { desc = '[S]earch h[i]dden files' })
 keymap('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[S]earch [B]uffers' })
 keymap('n', '<leader>sm', require('custom.configs.telescope.multigrep').setup, { desc = '[S]earch [M]ultigrep' })
 keymap('n', '<leader>se', require('custom.configs.telescope.exclude-types').setup, { desc = '[S]earch [E]xclude Types Grep' })
@@ -164,6 +164,9 @@ keymap({ 'n' }, '<leader>dt', function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled { bufnr = 0 }, { bufnr = 0 })
   print('Diagnostics set to: ' .. tostring(vim.diagnostic.is_enabled { bufnr = 0 }))
 end, { desc = '[D]iagnostics [T]oggle' })
+
+-- Toggle tiny-inline-diagnostic in current buffer (useful for filetypes disabled by default, e.g. markdown)
+keymap({ 'n' }, '<leader>dl', '<cmd>TinyInlineDiag toggle<cr>', { desc = '[D]iagnostics [I]nline toggle' })
 
 -- vim.opt.spell = false
 vim.opt.spelllang = 'en_gb'
