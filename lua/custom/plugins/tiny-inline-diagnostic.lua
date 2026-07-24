@@ -9,7 +9,6 @@ return {
       options = {
         add_messages = {
           display_count = true,
-          display_count = false, -- Show diagnostic count instead of messages when cursor not on line
         },
         multilines = {
           -- Needed so diagnostics render on every line, not just the cursor's line.
