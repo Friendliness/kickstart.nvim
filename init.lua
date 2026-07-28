@@ -719,6 +719,9 @@ require('lazy').setup({
         svelte = {},
         ['sql-formatter'] = {},
         tailwindcss = {},
+        jinja_lsp = {
+          filetypes = { 'jinja', 'htmldjango' },
+        },
         jsonls = {},
         bashls = {},
         buf_ls = {},
@@ -1016,6 +1019,9 @@ require('lazy').setup({
         'sql',
         'terraform',
         'svelte',
+        'css',
+        'jinja',
+        'htmldjango',
       }
       local alreadyInstalled = require('nvim-treesitter.config').get_installed()
       local parsersToInstall = vim

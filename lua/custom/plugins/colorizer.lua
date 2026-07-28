@@ -1,3 +1,3 @@
 return {
-  "norcalli/nvim-colorizer.lua"
+  'catgoose/nvim-colorizer.lua',
 }
