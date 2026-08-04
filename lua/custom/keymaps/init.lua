@@ -34,6 +34,17 @@ keymap('n', '<leader>x', vim.cmd.BufferClose, { desc = 'Close buffer' })
 -- Lazygit
 keymap('n', '<leader>gs', vim.cmd.LazyGit, { desc = 'LazyGit' })
 keymap('n', '<leader>lg', vim.cmd.LazyGit, { desc = 'LazyGit' })
+keymap('n', '<localleader>pb', function()
+  local buffer = require('octo.utils').get_current_buffer()
+  if not buffer or not buffer:isPullRequest() then
+    vim.notify('Not an Octo PR buffer', vim.log.levels.WARN)
+    return
+  end
+
+  local branch = buffer:pullRequest().headRefName
+  vim.fn.setreg('+', branch)
+  vim.notify('Copied PR branch: ' .. branch)
+end, { desc = 'Copy [P]ull request [B]ranch' })
 
 -- Undotree
 keymap('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Undotree' })
