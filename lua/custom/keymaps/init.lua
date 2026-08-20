@@ -104,7 +104,8 @@ keymap('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[S]ear
 keymap('n', '<leader>sm', require('custom.configs.telescope.multigrep').setup, { desc = '[S]earch [M]ultigrep' })
 keymap('n', '<leader>se', require('custom.configs.telescope.exclude-types').setup, { desc = '[S]earch [E]xclude Types Grep' })
 keymap('n', '<leader>sa', require('custom.configs.telescope.arguments').setup, { desc = '[S]earch [A]rguments Grep' })
-keymap('n', '<leader>st', '<cmd>TodoTelescope<cr>', { desc = '[S]earch [T]odo' })
+keymap('n', '<leader>sT', '<cmd>TodoTelescope<cr>', { desc = '[S]earch [T]odo' })
+keymap('n', '<leader>st', '<cmd>Telescope telescope-tabs list_tabs<cr>', { desc = '[S]earch [t]abs' })
 
 -- Make a visual selection work for Telescope search
 keymap('v', '<leader>sw', function()
@@ -252,3 +253,8 @@ keymap('n', '<leader>wtn', '<Plug>(WayfinderTrailNext)', { desc = 'Wayfinder Tra
 keymap('n', '<leader>wtp', '<Plug>(WayfinderTrailPrev)', { desc = 'Wayfinder Trail Previous' })
 keymap('n', '<leader>wto', '<Plug>(WayfinderTrailOpen)', { desc = 'Wayfinder Trail Open' })
 keymap('n', '<leader>wts', '<Plug>(WayfinderTrailShow)', { desc = 'Wayfinder Trail Show' })
+
+-- Tabs
+keymap('n', '<leader>tn', '<cmd>tabnew<cr>', { desc = '[T]ab [N]ew' })
+keymap('n', '<leader>tc', '<cmd>tabclose<cr>', { desc = '[T]ab [C]lose' })
+keymap('n', '<leader>ts', '<cmd>tabsplit<cr>', { desc = '[T]ab [S]plit' })

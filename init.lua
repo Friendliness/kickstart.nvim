@@ -466,6 +466,7 @@ require('lazy').setup({
       pcall(require('telescope').load_extension, 'dap')
       pcall(require('telescope').load_extension, 'git_diffs')
       pcall(require('telescope').load_extension, 'luasnip')
+      pcall(require('telescope').load_extension, 'telescope-tabs')
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
