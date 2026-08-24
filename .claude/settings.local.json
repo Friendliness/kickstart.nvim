@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//home/friendliness/.local/share/nvim/lazy/**)",
+      "Read(//home/friendliness/.local/share/nvim/lazy/nvim-colorizer.lua/lua/colorizer/**)"
+    ]
+  }
+}
