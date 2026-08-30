@@ -17,9 +17,9 @@ return {
     -- Required dependency for nvim-dap-ui
     'nvim-neotest/nvim-nio',
 
-    -- Installs the debug adapters for you
-    'williamboman/mason.nvim',
-    'jay-babu/mason-nvim-dap.nvim',
+    -- Mason is only used for debug adapters on non-Nix hosts.
+    { 'williamboman/mason.nvim', enabled = vim.env.NVIM_USE_MASON == '1' },
+    { 'jay-babu/mason-nvim-dap.nvim', enabled = vim.env.NVIM_USE_MASON == '1' },
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
@@ -44,28 +44,22 @@ return {
       callback { type = 'server', host = config.host or '127.0.0.1', port = config.port or 8086 }
     end
 
-    require('mason-nvim-dap').setup {
-      -- Makes a best effort to setup the various debuggers with
-      -- reasonable debug configurations
-      automatic_installation = true,
-      -- You'll need to check that you have the required things installed
-      -- online, please don't ask me how to install them :)
-      ensure_installed = {
-        -- Update this to ensure that you have the debuggers for the langs you want
-        'delve',
-        'python',
-        'lua',
-      },
-
-      -- You can provide additional configuration to the handlers,
-      -- see mason-nvim-dap README for more information
-      handlers = {
-        function(config)
-          require('mason-nvim-dap').default_setup(config) -- don't forget this!
-          require('dap-python').setup '~/.virtualenvs/debugpy/bin/python'
-        end,
-      },
-    }
+    if vim.env.NVIM_USE_MASON == '1' then
+      require('mason-nvim-dap').setup {
+        automatic_installation = true,
+        ensure_installed = {
+          'delve',
+          'python',
+          'lua',
+        },
+        handlers = {
+          function(config)
+            require('mason-nvim-dap').default_setup(config)
+            require('dap-python').setup '~/.virtualenvs/debugpy/bin/python'
+          end,
+        },
+      }
+    end
 
     -- Basic debugging keymaps, feel free to change to your liking!
     vim.keymap.set({ 'n', 'i' }, '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })

@@ -522,10 +522,10 @@ require('lazy').setup({
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
-      -- Automatically install LSPs and related tools to stdpath for Neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
+      -- Mason is an opt-in fallback for hosts without Nix-provided tools.
+      { 'williamboman/mason.nvim', enabled = vim.env.NVIM_USE_MASON == '1' },
+      { 'williamboman/mason-lspconfig.nvim', enabled = vim.env.NVIM_USE_MASON == '1' },
+      { 'WhoIsSethDaniel/mason-tool-installer.nvim', enabled = vim.env.NVIM_USE_MASON == '1' },
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -538,6 +538,15 @@ require('lazy').setup({
       { 'saghen/blink.cmp' },
     },
     config = function()
+      local use_mason = vim.env.NVIM_USE_MASON == '1'
+      if not use_mason then
+        local mason_bin = vim.fn.stdpath 'data' .. '/mason/bin'
+        local paths = vim.split(vim.env.PATH or '', ':', { plain = true })
+        vim.env.PATH = table.concat(vim.tbl_filter(function(path)
+          return path ~= mason_bin
+        end, paths), ':')
+      end
+
       -- Brief aside: **What is LSP?**
       --
       -- LSP is an initialism you've probably heard, but might not understand what it is.
@@ -660,7 +669,7 @@ require('lazy').setup({
       capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
 
       -- Enable the following language servers
-      --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
+      --  Feel free to add/remove any LSPs that you want here.
       --
       --  Add any additional override configuration in the following tables. Available keys are:
       --  - cmd (table): Override the default command used to start the server
@@ -723,7 +732,6 @@ require('lazy').setup({
           },
         },
         svelte = {},
-        ['sql-formatter'] = {},
         tailwindcss = {},
         jinja_lsp = {
           filetypes = { 'jinja', 'htmldjango' },
@@ -731,52 +739,30 @@ require('lazy').setup({
         jsonls = {},
         bashls = {},
         buf_ls = {},
-        -- sqls = {},
-        -- nix
-        -- nil_ls = {
-        --   settings = {
-        --     ['nil'] = {
-        --       formatting = {
-        --         command = { 'nixfmt' },
-        --       },
-        --     },
-        --   },
-        -- },
+        nixd = {},
         terraform = {},
       }
 
-      -- Ensure the servers and tools above are installed
-      --  To check the current status of installed tools and/or manually install
-      --  other tools, you can run
-      --    :Mason
-      --
-      --  You can press `g?` for help in this menu.
-      require('mason').setup()
+      local function setup_server(server_name)
+        local server = servers[server_name] or {}
+        server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+        vim.lsp.config(server_name, server)
+        vim.lsp.enable(server_name)
+      end
 
-      -- You can add other tools here that you want Mason to install
-      -- for you, so that they are available from within Neovim.
-      local ensure_installed = vim.tbl_filter(function(server)
-        return server ~= 'ts_ls'
-      end, vim.tbl_keys(servers or {}))
-      vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
-      })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
-      require('mason-lspconfig').setup {
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for tsserver)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            -- require('lspconfig')[server_name].setup(server)
-            vim.lsp.config(server_name, server)
-            vim.lsp.enable(server_name)
-          end,
-        },
-      }
+      if use_mason then
+        require('mason').setup()
+        local ensure_installed = vim.tbl_keys(servers)
+        vim.list_extend(ensure_installed, { 'stylua' })
+        require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+        require('mason-lspconfig').setup {
+          handlers = { setup_server },
+        }
+      else
+        for server_name in pairs(servers) do
+          setup_server(server_name)
+        end
+      end
     end,
   },
 
@@ -796,6 +782,7 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        nix = { 'nixfmt' },
         -- Conform can also run multiple formatters sequentially
         python = { 'ruff_format', 'ruff' },
 
