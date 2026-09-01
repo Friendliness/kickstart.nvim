@@ -542,9 +542,12 @@ require('lazy').setup({
       if not use_mason then
         local mason_bin = vim.fn.stdpath 'data' .. '/mason/bin'
         local paths = vim.split(vim.env.PATH or '', ':', { plain = true })
-        vim.env.PATH = table.concat(vim.tbl_filter(function(path)
-          return path ~= mason_bin
-        end, paths), ':')
+        vim.env.PATH = table.concat(
+          vim.tbl_filter(function(path)
+            return path ~= mason_bin
+          end, paths),
+          ':'
+        )
       end
 
       -- Brief aside: **What is LSP?**
