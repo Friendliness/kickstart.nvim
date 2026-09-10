@@ -771,6 +771,19 @@ require('lazy').setup({
 
   { -- Autoformat
     'stevearc/conform.nvim',
+    keys = {
+      {
+        '<leader>f',
+        function()
+          require('conform').format {
+            timeout_ms = 500,
+            lsp_fallback = not ({ c = true, cpp = true, proto = true })[vim.bo.filetype],
+          }
+        end,
+        mode = { 'n', 'v' },
+        desc = '[F]ormat Buffer',
+      },
+    },
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)

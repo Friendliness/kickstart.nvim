@@ -93,11 +93,6 @@ end, { desc = 'TroubleToggle [G]oto lsp_[R]eferences' })
 -- keymap('i', '<C-p>', '<C-r>+', { noremap = true, silent = true, desc = 'Paste from clipboard from within insert mode' })
 keymap('x', '<leader>P', '"_dP', { noremap = true, silent = true, desc = 'Paste over selection without erasing unnamed register' })
 
--- Format
-keymap({ 'n', 'v' }, '<leader>f', function()
-  require('conform').format { lsp_fallback = true }
-end, { desc = '[F]ormat Buffer' })
-
 -- Telescope
 -- keymap('n', '<leader>si', function()
 --   require('telescope.builtin').find_files { hidden = true }
