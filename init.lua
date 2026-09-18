@@ -776,7 +776,7 @@ require('lazy').setup({
         '<leader>f',
         function()
           require('conform').format {
-            timeout_ms = 500,
+            timeout_ms = 5000,
             lsp_fallback = not ({ c = true, cpp = true, proto = true })[vim.bo.filetype],
           }
         end,
@@ -807,6 +807,9 @@ require('lazy').setup({
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
 
         html = { 'prettier' },
+
+        http = { 'kulala-fmt' },
+        rest = { 'kulala-fmt' },
       },
     },
   },
