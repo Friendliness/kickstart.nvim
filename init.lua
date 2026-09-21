@@ -964,6 +964,14 @@ require('lazy').setup({
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+      require('mini.move').setup {
+        mappings = {
+          left = 'H',
+          right = 'L',
+          down = 'J',
+          up = 'K',
+        },
+      }
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
