@@ -807,9 +807,6 @@ require('lazy').setup({
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
 
         html = { 'prettier' },
-
-        http = { 'kulala-fmt' },
-        rest = { 'kulala-fmt' },
       },
     },
   },
@@ -1088,6 +1085,10 @@ require('lazy').setup({
   -- { import = 'custom.plugins' },
   { import = 'custom.plugins' },
 }, {
+  performance = {
+    -- Keep Nix-provided Vim packages available for packloadall() below.
+    reset_packpath = false,
+  },
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
     -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
@@ -1107,6 +1108,21 @@ require('lazy').setup({
       lazy = '💤 ',
     },
   },
+})
+
+vim.cmd.packloadall()
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'http',
+  callback = function(args)
+    vim.keymap.set('n', '<leader>Rs', '<cmd>Rest run<CR>', { buffer = args.buf, desc = 'Run HTTP request' })
+    vim.keymap.set('n', '<leader>Rr', '<cmd>Rest last<CR>', { buffer = args.buf, desc = 'Rerun last HTTP request' })
+    vim.keymap.set('n', '<leader>Ro', '<cmd>Rest open<CR>', { buffer = args.buf, desc = 'Open HTTP result' })
+    vim.keymap.set('n', '<leader>Re', '<cmd>Rest env select<CR>', { buffer = args.buf, desc = 'Select HTTP environment' })
+    vim.keymap.set('n', '<leader>Ry', '<cmd>Rest curl yank<CR>', { buffer = args.buf, desc = 'Copy request as cURL' })
+    vim.keymap.set('n', '<leader>Rl', '<cmd>Rest logs<CR>', { buffer = args.buf, desc = 'Open HTTP logs' })
+    vim.keymap.set('n', '<leader>Rc', '<cmd>Rest cookies<CR>', { buffer = args.buf, desc = 'Open HTTP cookies' })
+  end,
 })
 
 require 'custom.configs.init'
