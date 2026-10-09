@@ -1,4 +1,5 @@
 require 'custom.configs.colorizer'
+require 'custom.configs.filetypes'
 require 'custom.configs.scroll'
 require 'custom.configs.snippets'
 require 'custom.configs.split'
