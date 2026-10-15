@@ -259,6 +259,14 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
+local function format_options(bufnr)
+  local disable_lsp = { c = true, cpp = true, proto = true }
+  return {
+    timeout_ms = 5000,
+    lsp_format = disable_lsp[vim.bo[bufnr or 0].filetype] and 'never' or 'fallback',
+  }
+end
+
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   -- FIXME: Sometimes seems to cause problems: python 'with' context managers
@@ -771,14 +779,13 @@ require('lazy').setup({
 
   { -- Autoformat
     'stevearc/conform.nvim',
+    -- Register format-on-save before the first write, even with a keys trigger.
+    lazy = false,
     keys = {
       {
         '<leader>f',
         function()
-          require('conform').format {
-            timeout_ms = 5000,
-            lsp_fallback = not ({ c = true, cpp = true, proto = true })[vim.bo.filetype],
-          }
+          require('conform').format(format_options())
         end,
         mode = { 'n', 'v' },
         desc = '[F]ormat Buffer',
@@ -786,16 +793,7 @@ require('lazy').setup({
     },
     opts = {
       notify_on_error = false,
-      format_on_save = function(bufnr)
-        -- Disable "format_on_save lsp_fallback" for languages that don't
-        -- have a well standardized coding style. You can add additional
-        -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true, proto = true }
-        return {
-          timeout_ms = 500,
-          lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-        }
-      end,
+      format_on_save = format_options,
       formatters_by_ft = {
         lua = { 'stylua' },
         nix = { 'nixfmt' },
