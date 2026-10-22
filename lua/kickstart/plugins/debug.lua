@@ -25,9 +25,6 @@ return {
     'leoluz/nvim-dap-go',
     'mfussenegger/nvim-dap-python',
     'jbyuki/one-small-step-for-vimkind',
-    config = function()
-      require('dap-python').setup '~/.virtualenvs/debugpy/bin/python'
-    end,
   },
   config = function()
     local dap = require 'dap'
@@ -39,6 +36,15 @@ return {
         name = 'Attach to running Neovim instance',
       },
     }
+
+    if vim.env.NVIM_USE_MASON == '1' then
+      require('mason-nvim-dap').setup {
+        automatic_installation = true,
+        ensure_installed = {
+          'delve',
+        },
+      }
+    end
 
     dap.adapters.nlua = function(callback, config)
       callback { type = 'server', host = config.host or '127.0.0.1', port = config.port or 8086 }

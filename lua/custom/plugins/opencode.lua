@@ -1,6 +1,10 @@
 return {
   'sudo-tee/opencode.nvim',
   config = function()
+    local function is_dotenv_buffer(buf)
+      return buf and vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].filetype == 'dotenv'
+    end
+
     local function is_sensitive_path(path)
       if not path or path == '' then
         return false
@@ -9,34 +13,41 @@ return {
       local normalized = vim.fn.fnamemodify(path, ':p'):gsub('\\', '/')
       local name = vim.fn.fnamemodify(normalized, ':t')
 
-      return name:match('^%.env') ~= nil
-        or name:match('%.env') ~= nil
+      return is_dotenv_buffer(vim.fn.bufnr(normalized))
+        or vim.filetype.match { filename = normalized } == 'dotenv'
+        or name:match '^%.env' ~= nil
+        or name:match '%.env' ~= nil
         or name == '.envrc'
         or name == '.npmrc'
         or name == '.pypirc'
         or name == '.netrc'
         or name == '.pgpass'
-        or normalized:match('/%.aws/') ~= nil
-        or normalized:match('/%.ssh/') ~= nil
-        or normalized:match('/%.kube/') ~= nil
-        or normalized:match('/secrets/') ~= nil
-        or normalized:match('/credentials/') ~= nil
-        or normalized:match('/%.docker/config%.json$') ~= nil
-        or normalized:match('/config/database%.yml$') ~= nil
-        or normalized:match('/credfile%.json$') ~= nil
-        or normalized:match('/kubeconfig$') ~= nil
-        or normalized:match('/env%.php') ~= nil
-        or normalized:match('%.pem$') ~= nil
-        or normalized:match('%.key$') ~= nil
-        or normalized:match('%.crt$') ~= nil
-        or normalized:match('%.p12$') ~= nil
-        or normalized:match('%.pfx$') ~= nil
-        or normalized:match('/appsettings%..*%.json$') ~= nil
+        or normalized:match '/%.aws/' ~= nil
+        or normalized:match '/%.ssh/' ~= nil
+        or normalized:match '/%.kube/' ~= nil
+        or normalized:match '/secrets/' ~= nil
+        or normalized:match '/credentials/' ~= nil
+        or normalized:match '/%.docker/config%.json$' ~= nil
+        or normalized:match '/config/database%.yml$' ~= nil
+        or normalized:match '/credfile%.json$' ~= nil
+        or normalized:match '/kubeconfig$' ~= nil
+        or normalized:match '/env%.php' ~= nil
+        or normalized:match '%.pem$' ~= nil
+        or normalized:match '%.key$' ~= nil
+        or normalized:match '%.crt$' ~= nil
+        or normalized:match '%.p12$' ~= nil
+        or normalized:match '%.pfx$' ~= nil
+        or normalized:match '/appsettings%..*%.json$' ~= nil
     end
 
     local function prompt_guard(mentioned_files)
       local paths = vim.list_extend({}, mentioned_files or {})
-      local current = vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
+      local current_buf = vim.api.nvim_get_current_buf()
+      if is_dotenv_buffer(current_buf) then
+        vim.notify('OpenCode prompt blocked: dotenv buffer is active', vim.log.levels.ERROR)
+        return false
+      end
+      local current = vim.api.nvim_buf_get_name(current_buf)
 
       if current ~= '' then
         table.insert(paths, current)
@@ -57,6 +68,10 @@ return {
 
       local state_ok, state = pcall(require, 'opencode.state')
       if state_ok and state.current_code_buf and vim.api.nvim_buf_is_valid(state.current_code_buf) then
+        if is_dotenv_buffer(state.current_code_buf) then
+          vim.notify('OpenCode prompt blocked: dotenv buffer is active', vim.log.levels.ERROR)
+          return false
+        end
         local code_buf = vim.api.nvim_buf_get_name(state.current_code_buf)
         if code_buf ~= '' then
           table.insert(paths, code_buf)
