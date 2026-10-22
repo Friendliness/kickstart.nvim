@@ -49,6 +49,7 @@ return {
         },
       },
       completion = {
+        menu = { auto_show = true },
         ghost_text = { enabled = false },
         trigger = { prefetch_on_insert = false }, --  Recommended to avoid unnecessary request
         list = {
