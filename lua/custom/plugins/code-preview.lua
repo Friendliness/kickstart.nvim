@@ -1,6 +1,6 @@
 return {
   'Cannon07/code-preview.nvim',
-
+  dir = vim.fn.expand '~/Projects/Lua/code-preview.nvim',
   config = function()
     require('code-preview').setup {
       diff = {

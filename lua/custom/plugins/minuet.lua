@@ -1,5 +1,6 @@
 return {
   'milanglacier/minuet-ai.nvim',
+  enabled = false,
   init = function()
     vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
       group = vim.api.nvim_create_augroup('minuet-dotenv', { clear = true }),

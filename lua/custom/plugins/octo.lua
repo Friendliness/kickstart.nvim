@@ -22,6 +22,9 @@ return {
     picker = 'telescope',
     -- bare Octo command opens picker of commands
     enable_builtin = true,
+    pull_requests = {
+      always_select_remote_on_create = true,
+    },
   },
   keys = {
     {

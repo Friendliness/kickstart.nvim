@@ -255,3 +255,22 @@ keymap('n', '<leader>wts', '<Plug>(WayfinderTrailShow)', { desc = 'Wayfinder Tra
 keymap('n', '<leader>tn', '<cmd>tabnew<cr>', { desc = '[T]ab [N]ew' })
 keymap('n', '<leader>tc', '<cmd>tabclose<cr>', { desc = '[T]ab [C]lose' })
 keymap('n', '<leader>ts', '<cmd>tabsplit<cr>', { desc = '[T]ab [S]plit' })
+
+-- Splits - Make C-w | maximize current split and undo if pressed again
+keymap('n', '<C-w>|', function()
+  local state = vim.t.max_width_state
+  local win = vim.api.nvim_get_current_win()
+  local layout = vim.fn.winlayout()
+
+  if state and state.win == win and vim.deep_equal(state.layout, layout) then
+    vim.cmd(state.restore)
+    vim.t.max_width_state = nil
+  else
+    vim.t.max_width_state = {
+      win = win,
+      layout = layout,
+      restore = vim.fn.winrestcmd(),
+    }
+    vim.cmd 'vertical resize'
+  end
+end, { desc = 'Maximize current split and undo if pressed again' })
